@@ -10,8 +10,6 @@ fetch('http://localhost:3000/api/products')
     console.log(err);
   }) 
 
-
-
 function makeCards(productsArray) {
   const length = productsArray.length;
   const items = document.getElementById('items');
@@ -20,7 +18,7 @@ function makeCards(productsArray) {
     let template = `
     <a href="./product.html?id=${productsArray[i]._id}">
     <article>
-    <img src=".../product01.jpg"  alt="${productsArray[i].altTxt}">
+    <img src="${productsArray[i].imageUrl}" alt="${productsArray[i].altTxt}">
     <h3 class="productName">${productsArray[i].name}</h3>
     <p class="productDescription">${productsArray[i].description}</p>
   </article>
