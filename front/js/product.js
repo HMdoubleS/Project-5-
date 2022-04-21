@@ -23,9 +23,12 @@ makePullDown(obj.colors);
 }
 
 // pulldown card function
-function makePullDown(arr) {
+function makePullDown(array) {
     const pullDown = document.getElementById('colors');
     pullDown.addEventListener('change', colors);
     //needs to loop through color options but not sure how to get the color value
   }
 
+//how do I get the img, price, description onto the page and alter them with the id?
+//need to link the cart button to the cart page
+//how do I get the color values for each ID for the pulldown menu?
