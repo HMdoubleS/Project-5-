@@ -1,18 +1,6 @@
 const idProduct = new URL(window.location.href).searchParams.get("id");
 console.log(idProduct)
 
-fetch('http://localhost:3000/api/products/' + idProduct)
-  .then((res) => {
-    return res.json();
-  })
-  .then((data) => {
-    console.log(data);
-    makeProductCard(data);
-  })
-  .catch(err => {
-    console.log(err);
-  })
-  
 const productObject = {
     color: '',
     id: '',
@@ -21,6 +9,15 @@ const productObject = {
     price: '',
     qty: 1
 }
+
+
+fetch('http://localhost:3000/api/products/' + idProduct)
+    .then(res => res.json())
+    .then(data => {
+    makeProductCard(data);
+    })
+    .catch(err => console.log(err));
+  
 
 function makeProductCard(obj) {
 // updating quantity
@@ -36,8 +33,11 @@ makePullDown(obj.colors);
 }
 
 // pulldown card function
+
+
 function makePullDown(arr) {
     const pullDown = document.getElementById('colors');
-    pullDown.addEventListener('change', updateColor);
-
+    pullDown.addEventListener('change', colors);
+    //needs to loop through color options but not sure how to get the color value
   }
+
