@@ -11,6 +11,7 @@ fetch('http://localhost:3000/api/products/' + idProduct)
   
 
 function makeProductCard(obj) {
+    
 // updating quantity
 const quantity = document.getElementById('quantity');
 quantity.addEventListener('change', quantity);
