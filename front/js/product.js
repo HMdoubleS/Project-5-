@@ -34,10 +34,10 @@ prodTitle.innerHTML = obj.name;
 prodDescription.innerHTML = obj.description;
 
 
-// updating quantity
+// updating quantity event
 quantity.addEventListener('change', quantity);
 
-// add to cart
+// add to cart event
 addBtn.addEventListener('click', addToCart);
 
 // color change pulldown
