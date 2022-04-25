@@ -49,8 +49,9 @@ function makePullDown(arr) {
     for (let i=0; i<arr.length; i++) {
         const pulldown = document.createElement('select');
         pulldown.addEventListener('change', colors);
-        pulldown.value = arr[i];
-        pulldown.innerText = arr[i];
+        pulldown.setAttribute('value', obj.colors);
+        pulldown.value = obj.colors[i];
+        pulldown.innerHTML = obj.colors[i];
         prodColors.appendChild(pulldown);
 
 
