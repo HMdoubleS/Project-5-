@@ -26,13 +26,13 @@ const prodColors = document.getElementById('colors');
 //image
 const itemImg = document.createElement('img');
 itemImg.setAttribute('src', obj.imageUrl);
+itemImg.setAttribute('alt', obj.altTxt);
 prodImg.appendChild(itemImg);
 
 //price, title and description
 prodPrice.innerHTML = obj.price;
 prodTitle.innerHTML = obj.name;
 prodDescription.innerHTML = obj.description;
-
 
 // updating quantity event
 quantity.addEventListener('change', quantity);
@@ -44,8 +44,6 @@ addBtn.addEventListener('click', addToCart);
 makePullDown(obj.colors);
 prodColors.addEventListener('change', colors);
 const length = prodColors.length;
-
-
 
 // pulldown card function
 function makePullDown(arr) {
