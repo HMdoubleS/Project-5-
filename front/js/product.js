@@ -19,7 +19,7 @@ const prodPrice = document.getElementById('price');
 const prodTitle = document.getElementById('title');
 const prodQuantity = document.getElementById('quantity');
 const addBtn = document.getElementById('addToCart');
-const pullDown = document.getElementById('colors');
+const prodColors = document.getElementById('colors');
 
 // add content to elements
 
@@ -42,13 +42,20 @@ addBtn.addEventListener('click', addToCart);
 
 // color change pulldown
 makePullDown(obj.colors);
-}
+prodColors.addEventListener('change', colors);
+const length = prodColors.length;
+
+
 
 // pulldown card function
-function makePullDown(array) {
-    pullDown.addEventListener('change', colors);
-    //needs to loop through color options but not sure how to get the color value
+function makePullDown(arr) {
+    const pulldown = document.createElement('select');
+    for (let i=0; i < obj.colors.length; i++) {
+
+    }
   }
+}   
+
 
 //how do I get the img, price, description onto the page and alter them with the id?
 //need to link the cart button to the cart page
