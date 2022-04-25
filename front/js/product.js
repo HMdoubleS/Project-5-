@@ -42,13 +42,17 @@ addBtn.addEventListener('click', addToCart);
 
 // color change pulldown
 makePullDown(obj.colors);
-prodColors.addEventListener('change', colors);
 const length = prodColors.length;
 
 // pulldown card function
 function makePullDown(arr) {
-    const pulldown = document.createElement('select');
-    for (let i=0; i < obj.colors.length; i++) {
+    for (let i=0; i<arr.length; i++) {
+        const pulldown = document.createElement('select');
+        pulldown.addEventListener('change', colors);
+        pulldown.value = arr[i];
+        pulldown.innerText = arr[i];
+        prodColors.appendChild(pulldown);
+
 
     }
   }
