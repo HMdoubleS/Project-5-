@@ -1,13 +1,13 @@
 fetch('http://localhost:3000/api/products/')
-  .then((res) => {
-    return res.json();
+  .then((response) => {
+    return response.json();
   })
   .then((data) => {
     console.log(data);
     makeCards(data);
   })
-  .catch(err => {
-    console.log(err);
+  .catch(error => {
+    console.log(error);
   }) 
 
 function makeCards(productsArray) {

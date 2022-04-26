@@ -3,12 +3,12 @@ console.log(idProduct)
 
 //getting the item from the api
 fetch('http://localhost:3000/api/products/' + idProduct)
-    .then(res => res.json())
+    .then(response => response.json())
     .then(data => {
         console.log(data);
     makeProductCard(data);
     })
-    .catch(err => console.log(err));
+    .catch(error => console.log(error));
   
 
 function makeProductCard(obj) {
