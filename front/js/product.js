@@ -41,22 +41,15 @@ quantity.addEventListener('change', quantity);
 addBtn.addEventListener('click', addToCart);
 
 // color change pulldown
-makePullDown(obj.colors);
-const length = prodColors.length;
+const pulldown = document.createElement('option');
+pulldown.addEventListener('change', colors);
 
-// pulldown card function
-function makePullDown(arr) {
-    for (let i=0; i<arr.length; i++) {
-        const pulldown = document.createElement('select');
-        pulldown.addEventListener('change', colors);
-        pulldown.setAttribute('value', obj.colors);
+    for (let i=0; i<obj.colors.length; i++) {
+        pulldown.setAttribute('value', obj.colors[i]);
         pulldown.value = obj.colors[i];
-        pulldown.innerHTML = obj.colors[i];
+        pulldown.innerHTML = obj.colors[i]; 
         prodColors.appendChild(pulldown);
-
-
     }
-  }
 }   
 
 
