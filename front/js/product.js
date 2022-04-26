@@ -41,18 +41,14 @@ quantity.addEventListener('change', quantity);
 addBtn.addEventListener('click', addToCart);
 
 // color change pulldown
-const pulldown = document.createElement('option');
-pulldown.addEventListener('change', colors);
-
-    for (let i=0; i<obj.colors.length; i++) {
+    for (let i=0; i < obj.colors.length; i++) {
+        const pulldown = document.createElement('option');
         pulldown.setAttribute('value', obj.colors[i]);
         pulldown.value = obj.colors[i];
         pulldown.innerHTML = obj.colors[i]; 
         prodColors.appendChild(pulldown);
+        pulldown.addEventListener('change', obj.colors);
     }
 }   
 
-
-//how do I get the img, price, description onto the page and alter them with the id?
 //need to link the cart button to the cart page
-//how do I get the color values for each ID for the pulldown menu?
