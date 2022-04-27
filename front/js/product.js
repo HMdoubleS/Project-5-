@@ -37,9 +37,6 @@ prodDescription.innerHTML = obj.description;
 // updating quantity event
 quantity.addEventListener('change', quantity);
 
-// add to cart event
-addBtn.addEventListener('click', addToCart);
-
 // color change pulldown
     for (let i=0; i < obj.colors.length; i++) {
         const pulldown = document.createElement('option');
@@ -49,6 +46,21 @@ addBtn.addEventListener('click', addToCart);
         prodColors.appendChild(pulldown);
         pulldown.addEventListener('change', obj.colors);
     }
+
+// add to cart event
+addBtn.addEventListener('click', addToCart);
+function addToCart() {
+    const quantityChoice = document.querySelector('#quantity');
+    if (quantityChoice > 0 && quantityChoice <= 100 && quantityChoice != 0) {
+
+   }
+}
+
+// localStorage.setItem
+// need to make sure color is selected
+
+
+
 }   
 
 //need to link the cart button to the cart page
