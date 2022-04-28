@@ -1,0 +1,1 @@
+const productLocalStorage = JSON.parse(localStorage.getItem('product'));

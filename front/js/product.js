@@ -47,20 +47,49 @@ quantity.addEventListener('change', quantity);
         pulldown.addEventListener('change', obj.colors);
     }
 
-// add to cart event
-addBtn.addEventListener('click', addToCart);
+// add to cart 
 function addToCart() {
+    addBtn.addEventListener('click', addToCart);
     const quantityChoice = document.querySelector('#quantity');
-    if (quantityChoice > 0 && quantityChoice <= 100 && quantityChoice != 0) {
+    const colorChoice = document.querySelector('#colors');
 
+    if (quantityChoice > 0 && quantityChoice <= 100 && quantityChoice != 0 && colorChoice != 0) {
+        const productOptions = {
+            id: obj._id,
+            name: obj.name,
+            img: obj.imgUrl,
+            altText: obj.altTxt,
+            description: obj.description,
+            price: obj.price,
+            color: colorChoice,
+            quantity: quantityChoice
+        }
    }
+
+// confirmation and link to cart page 
+window.location.href = 'cart.html';
+
+
+
+
+// localStorage.setItem => adds item to local storage
+// localStorage.getItem => retrieves the item from local storage 
+
+
+// initializing local storage
+const productLocalStorage = JSON.parse(localStorage.getItem('product'));
+
+    if (productLocalStorage) {
+     // if ordered is already in the cart
+
+    } else {
+        // if the item is not already in the cart
+
+    } else {
+        // if the cart is empty
+
+    }
 }
-
-// localStorage.setItem
-// need to make sure color is selected
-
-
-
-}   
+}
 
 //need to link the cart button to the cart page
