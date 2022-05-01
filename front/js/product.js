@@ -66,9 +66,10 @@ function makeProductCard(obj) {
         pulldown.value = obj.colors[i];
         pulldown.innerHTML = obj.colors[i]; 
         prodColors.appendChild(pulldown);
-        pulldown.addEventListener('change', updateColor);
+        prodColors.addEventListener('change', updateColor);
     }
 }    
+
 // update quantity function
 function updateQuantity($event) {
     console.log($event.target, $event.target.value)
@@ -76,13 +77,14 @@ function updateQuantity($event) {
     console.log(prodObject)
 }
 
+// update color function
 function updateColor($event) {
     console.log($event.target, $event.target.value)
     prodObject.color = $event.target.value;
     console.log(prodObject)
 }
 
-
+//initialize product
 function initProdObject() {
 
 }
