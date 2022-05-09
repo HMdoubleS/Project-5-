@@ -1,1 +1,2 @@
-const productLocalStorage = JSON.parse(localStorage.getItem('product'));
+let productLocalStorage = JSON.parse(localStorage.getItem('product'));
+
