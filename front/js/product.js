@@ -3,19 +3,21 @@ console.log(idProduct);
 
 
 //set up the cart - 3 places local storage, array, and JSON
+
 let cartString = localStorage.getItem('cart') || '[]';
 // if(localStorage.getItem('cart')) {
 //     cartString = localStorage.getItem('cart')
 // } else {
 //     cartString = '[]'
 // }
-let cartArray = JSON.parse(cartString)
+let cartArray = JSON.parse(cartString);
+
 
 // object that represents the product
 const prodObject = {
     _id: '',
     name: '',
-    imgUrl: '',
+    imageUrl: '',
     altTxt: '',
     color: '',
     quantity: 1
@@ -58,6 +60,8 @@ function makeProductCard(obj) {
     // updating quantity event
     quantity.addEventListener('change', updateQuantity);
 
+    // add to cart
+    addBtn.addEventListener('click', addToCart);
 
     // color change pulldown
     for (let i=0; i < obj.colors.length; i++) {
@@ -85,11 +89,49 @@ function updateColor($event) {
 }
 
 //initialize product
-function initProdObject() {
+function initProdObject(object) {
+    prodObject.id = object.id;
+    prodObject.name = object.name;
+    prodObject.imageUrl = object.imageUrl;
+    prodObject.price = object.price;
 
+    let contents = localStorage.getItem(prodObject);
 }
 
 // add to cart event andfunction
+function addToCart($event) {
+    let isProductInCart = false;
+    
+    if (cartArray.length === 0){
+        cartArray.push(prodObject);
+        isProductInCart = true;
+    } else {
+        for (let i = 0; i < cartArray.length; i++) {
+            if (prodObject.name === cartArray[i].name && 
+                prodObject.option === cartArray[i].option) {
+              // if already in cart don't push, do increase qty
+              cartArray[i].qty = cartArray[i].qty + prodObject.qty;
+              isProductInCart = true;
+              localStorage.setItem('cart', JSON.stringify(cartString));
+            } 
+          }
+        }
+       
+        if (!isProductInCart) {
+            cartArray.push(prodObject);
+            cartArray.sync();
+        }
+        
+        // proof cart has changed properly
+        console.log(cartArray);
+        isProductInCart = false;
+      }
+        
+    
+
+    // if the item is not already in the cart
+
+
 
 // needs a confirmation and link to cart page 
 

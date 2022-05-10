@@ -1,2 +1,1 @@
-let productLocalStorage = JSON.parse(localStorage.getItem('product'));
-
+let cartString = localStorage.getItem('cart')
