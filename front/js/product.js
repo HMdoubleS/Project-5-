@@ -95,7 +95,7 @@ function initProdObject(object) {
     prodObject.imageUrl = object.imageUrl;
     prodObject.price = object.price;
 
-    let contents = localStorage.getItem(prodObject);
+// let contents = localStorage.getItem('prodObject');
 }
 
 // add to cart event andfunction
@@ -112,24 +112,21 @@ function addToCart($event) {
               // if already in cart don't push, do increase qty
               cartArray[i].qty = cartArray[i].qty + prodObject.qty;
               isProductInCart = true;
-              localStorage.setItem('cart', JSON.stringify(cartString));
+              localStorage.setItem('cart', JSON.stringify(prodObject));
             } 
           }
         }
        
-        if (!isProductInCart) {
-            cartArray.push(prodObject);
-            cartArray.sync();
-        }
+        // if (!isProductInCart) {
+        //     // cartArray.push(prodObject);
+        //     // cartArray.sync();
+        // }
         
         // proof cart has changed properly
         console.log(cartArray);
         isProductInCart = false;
       }
         
-    
-
-    // if the item is not already in the cart
 
 
 
