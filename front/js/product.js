@@ -112,7 +112,7 @@ function addToCart($event) {
               // if already in cart don't push, do increase qty
               cartArray[i].qty = cartArray[i].qty + prodObject.qty;
               isProductInCart = true;
-              localStorage.setItem('cart', JSON.stringify(cart));
+              localStorage.setItem('cart', JSON.stringify(cartArray));
             } 
           }
         }
