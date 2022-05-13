@@ -116,11 +116,6 @@ function addToCart($event) {
             } 
           }
         }
-       
-        // if (!isProductInCart) {
-        //     // cartArray.push(prodObject);
-        //     // cartArray.sync();
-        // }
         
         // proof cart has changed properly
         console.log(cartArray);
