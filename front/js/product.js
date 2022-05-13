@@ -103,7 +103,7 @@ function addToCart($event) {
     let isProductInCart = false;
     
     if (cartArray.length === 0) {
-        isProductInCart = false;
+        isProductInCart = true;
     } else {
         for (let i = 0; i < cartArray.length; i++) {
             if (prodObject.name === cartArray[i].name && 
@@ -126,7 +126,7 @@ function addToCart($event) {
         localStorage.setItem('cart', cartString);
         cartArray = JSON.parse(cartString);
     }
-
+}
 
 
 // needs a confirmation and link to cart page 
