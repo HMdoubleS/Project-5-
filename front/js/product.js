@@ -103,7 +103,7 @@ function addToCart($event) {
     let isProductInCart = false;
     
     if (cartArray.length === 0) {
-        isProductInCart = true;
+        isProductInCart = false;
     } else {
         for (let i = 0; i < cartArray.length; i++) {
             if (prodObject.name === cartArray[i].name && 
@@ -113,19 +113,19 @@ function addToCart($event) {
               isProductInCart = true;
               syncCart();
             } 
-          }
         }
-        if (isProductInCart) {
-            cartArray.push(prodObject);
-            syncCart();
-        }
-      }
+    }
+        
+    if (isProductInCart) {
+        cartArray.push(prodObject);
+        syncCart();
+    }
       
-      function syncCart() {
+    function syncCart() {
         cartString = JSON.stringify(cartArray);
         localStorage.setItem('cart', cartString);
         cartArray = JSON.parse(cartString);
-      }
+    }
 
 
 
