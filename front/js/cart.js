@@ -50,5 +50,7 @@ if (!productLocalStorage) {
         productPrice.innerHTML = productLocalStorage[i].price + ' €';
         productPrice.style.fontSize = "22px";
 
+        // add quantity
+
     }
 }

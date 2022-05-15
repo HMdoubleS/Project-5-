@@ -100,32 +100,34 @@ function initProdObject(object) {
 
 // add to cart event andfunction
 function addToCart($event) {
-    let isProductInCart = false;
+    let pushToCart = false; // indicates whether to put the item in the cart
     
-    if (cartArray.length === 0) {
-        isProductInCart = true;
+    if (cartArray.length === 0) { // is it empty? 
+        pushToCart = true;
     } else {
         for (let i = 0; i < cartArray.length; i++) {
             if (prodObject.name === cartArray[i].name && 
                 prodObject.option === cartArray[i].option) {
-              // if already in cart don't push, do increase qty
-              cartArray[i].quantity = cartArray[i].quantity + prodObject.quantity;
-              isProductInCart = true;
-              syncCart();
+                // if already in cart don't push, do increase qty
+                cartArray[i].quantity = cartArray[i].quantity + prodObject.quantity;
+                // pushToCart = true;
+                syncCart();
+            } else {
+                pushToCart = true;
             } 
         }
     }
         
-    if (isProductInCart) {
+    if (pushToCart) {
         cartArray.push(prodObject);
         syncCart();
     }
-      
-    function syncCart() {
-        cartString = JSON.stringify(cartArray);
-        localStorage.setItem('cart', cartString);
-        cartArray = JSON.parse(cartString);
-    }
+}
+
+function syncCart() {
+    cartString = JSON.stringify(cartArray);
+    localStorage.setItem('cart', cartString);
+    cartArray = JSON.parse(cartString);
 }
 
 
