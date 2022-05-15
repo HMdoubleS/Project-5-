@@ -3,7 +3,6 @@ console.log(idProduct);
 
 
 //set up the cart - 3 places local storage, array, and JSON
-
 let cartString = localStorage.getItem('cart') || '[]';
 // if(localStorage.getItem('cart')) {
 //     cartString = localStorage.getItem('cart')
@@ -75,16 +74,16 @@ function makeProductCard(obj) {
 }    
 
 // update quantity function
-function updateQuantity($event) {
-    console.log($event.target, $event.target.value)
-    prodObject.quantity = $event.target.value;
+function updateQuantity(event) {
+    console.log(event.target, event.target.value)
+    prodObject.quantity = event.target.value;
     console.log(prodObject)
 }
 
 // update color function
-function updateColor($event) {
-    console.log($event.target, $event.target.value)
-    prodObject.color = $event.target.value;
+function updateColor(event) {
+    console.log(event.target, event.target.value)
+    prodObject.color = event.target.value;
     console.log(prodObject)
 }
 
@@ -99,7 +98,7 @@ function initProdObject(object) {
 }
 
 // add to cart event andfunction
-function addToCart($event) {
+function addToCart(event) {
     let pushToCart = false; // indicates whether to put the item in the cart
     
     if (cartArray.length === 0) { // is it empty? 

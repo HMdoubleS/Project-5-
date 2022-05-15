@@ -1,11 +1,11 @@
 let productLocalStorage = JSON.parse(localStorage.getItem('cart'));
 
 
-
-if (!productLocalStorage) {
-    const titleCart = document.querySelector('h1');
-    const sectionCart = document.querySelector('.cart');
+// if product is not in local storage
+if (!productLocalStorage) { 
+    
 } else {
+    // iterate through all items in the cart
     for (let i=0; i < productLocalStorage.length; i++) {
         // create article 
         let productArticle = document.createElement('article');
@@ -42,12 +42,12 @@ if (!productLocalStorage) {
         let productColor = document.createElement('p');
         productArticle.appendChild(productColor);
         productColor.innerHTML = productLocalStorage[i].color;
-        productColor.style.fontSize = "22px";
+        productColor.style.fontSize = "22px"; // increase the font size 
 
         // add price
         let productPrice = document.createElement('p');
         productArticle.appendChild(productPrice);
-        productPrice.innerHTML = productLocalStorage[i].price + ' €';
+        productPrice.innerHTML = productLocalStorage[i].price + ' €'; // puts euro symbol in front of number 
         productPrice.style.fontSize = "22px";
 
         // add quantity
