@@ -1,15 +1,15 @@
-const idProduct = new URL(window.location.href).searchParams.get("id");
+const idProduct = new URL(window.location.href).searchParams.get("id"); //returns the url of the current page
 console.log(idProduct);
 
 
 //set up the cart - 3 places local storage, array, and JSON
-let cartString = localStorage.getItem('cart') || '[]';
+let cartString = localStorage.getItem('cart') || '[]'; // gets data from the cart or creates an empty array
 // if(localStorage.getItem('cart')) {
 //     cartString = localStorage.getItem('cart')
 // } else {
 //     cartString = '[]'
 // }
-let cartArray = JSON.parse(cartString);
+let cartArray = JSON.parse(cartString); // JSON.parse, takes the string data and parses it into a useable javascript object
 
 
 // object that represents the product
@@ -23,7 +23,7 @@ const prodObject = {
 }
 
 //getting the item from the api
-fetch('http://localhost:3000/api/products/' + idProduct)
+fetch('http://localhost:3000/api/products/' + idProduct) // fetches the data from the api with the ID of the current product
     .then(response => response.json())
     .then(data => {
         console.log(data);
@@ -57,10 +57,10 @@ function makeProductCard(obj) {
     prodDescription.innerHTML = obj.description;
 
     // updating quantity event
-    quantity.addEventListener('change', updateQuantity);
+    quantity.addEventListener('change', updateQuantity); // listener for achange event that will run the updateQuantity function
 
     // add to cart
-    addBtn.addEventListener('click', addToCart);
+    addBtn.addEventListener('click', addToCart); // listener for a click event that will run the addToCart function
 
     // color change pulldown
     for (let i=0; i < obj.colors.length; i++) {
@@ -104,7 +104,7 @@ function addToCart(event) {
     if (cartArray.length === 0) { // is it empty? 
         pushToCart = true;
     } else {
-        for (let i = 0; i < cartArray.length; i++) {
+        for (let i = 0; i < cartArray.length; i++) { // iterates through each item in the cartArray to see if name and options matches current cart items
             if (prodObject.name === cartArray[i].name && 
                 prodObject.option === cartArray[i].option) {
                 // if already in cart don't push, do increase qty
@@ -124,19 +124,13 @@ function addToCart(event) {
 }
 
 function syncCart() {
-    cartString = JSON.stringify(cartArray);
-    localStorage.setItem('cart', cartString);
-    cartArray = JSON.parse(cartString);
+    cartString = JSON.stringify(cartArray); // takes data and turns it into a JSON string
+    localStorage.setItem('cart', cartString); // add the data to the cart localStorage
+    cartArray = JSON.parse(cartString); // cartArray is the parsed version of the cartString object
 }
 
 
 // needs a confirmation and link to cart page 
 
-// localStorage.setItem => adds item to local storage
-// localStorage.getItem => retrieves the item from local storage 
-
-// if ordered is already in the cart, update quantity/color
-// if the item is not already in the cart
-// what about if the cart is empty
     
 
