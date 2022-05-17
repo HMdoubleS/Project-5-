@@ -9,7 +9,9 @@ let cartString = localStorage.getItem('cart') || '[]'; // gets data from the car
 // } else {
 //     cartString = '[]'
 // }
-let cartArray = JSON.parse(cartString); // JSON.parse, takes the string data and parses it into a useable javascript object
+let cartArray = JSON.parse(cartString); 
+// JSON.parse, takes the string data and parses it into a useable javascript object
+// objects that represent each item are stored in an array so we can store multiple items under a single name
 
 
 // object that represents the product

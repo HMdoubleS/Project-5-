@@ -23,23 +23,23 @@ if (!productLocalStorage) {
         let productImage = document.createElement('img');
         productDivImage.appendChild(productImage);
         productImage.src = productLocalStorage[i].imageUrl;
-
+        
         //create cart item content div
         let productItemContent = document.createElement('div');
         productArticle.appendChild(productItemContent);
         productItemContent.className = 'cart__item__content';
 
-        //create cart item content div
+        //create cart item content description div
         let productItemContentDescription = document.createElement('div');
         productItemContent.appendChild(productItemContentDescription);
         productItemContentDescription.className = 'cart__item__content__description';
 
-        //create cart item content div
+        //create cart item content settings div
         let productItemContentSettings = document.createElement('div');
         productArticle.appendChild(productItemContentSettings);
         productItemContentSettings.className = 'cart__item__content__settings';
 
-        //create cart item content div
+        //create cart item content settings quantity div
         let productItemContentQuantity = document.createElement('div');
         productItemContentSettings.appendChild(productItemContentQuantity);
         productItemContentQuantity.className = 'cart__item__content__quantity';
