@@ -35,8 +35,13 @@ if (!productLocalStorage) {
         productItemContentDescription.className = 'cart__item__content__description';
 
         //create cart item content div
+        let productItemContentSettings = document.createElement('div');
+        productArticle.appendChild(productItemContentSettings);
+        productItemContentSettings.className = 'cart__item__content__settings';
+
+        //create cart item content div
         let productItemContentQuantity = document.createElement('div');
-        productArticle.appendChild(productItemContentQuantity);
+        productItemContentSettings.appendChild(productItemContentQuantity);
         productItemContentQuantity.className = 'cart__item__content__quantity';
 
         // add title
