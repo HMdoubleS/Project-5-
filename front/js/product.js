@@ -94,7 +94,7 @@ function initProdObject(object) {
     prodObject.imageUrl = object.imageUrl;
     prodObject.price = object.price;
 
-// let contents = localStorage.getItem('prodObject');
+
 }
 
 // add to cart event andfunction
@@ -104,7 +104,8 @@ function addToCart(event) {
     if (cartArray.length === 0) { // is it empty? 
         pushToCart = true;
     } else {
-        for (let i = 0; i < cartArray.length; i++) { // iterates through each item in the cartArray to see if name and options matches current cart items
+        // iterates through each item in the cartArray to see if name and options matches current cart items
+        for (let i = 0; i < cartArray.length; i++) { 
             if (prodObject.name === cartArray[i].name && 
                 prodObject.option === cartArray[i].option) {
                 // if already in cart don't push, do increase qty

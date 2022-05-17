@@ -12,6 +12,7 @@ if (!productLocalStorage) {
         document.querySelector('#cart__items').appendChild(productArticle);
         productArticle.className = 'cart__item';
         productArticle.setAttribute('data-id', productLocalStorage[i].idProduct);
+        productArticle.setAttribute('data-color', productLocalStorage[i].color);
 
         // create image div
         let productDivImage = document.createElement('div');
@@ -33,6 +34,11 @@ if (!productLocalStorage) {
         productItemContent.appendChild(productItemContentDescription);
         productItemContentDescription.className = 'cart__item__content__description';
 
+        //create cart item content div
+        let productItemContentQuantity = document.createElement('div');
+        productArticle.appendChild(productItemContentQuantity);
+        productItemContentQuantity.className = 'cart__item__content__quantity';
+
         // add title
         let productName = document.createElement('h2');
         productItemContentDescription.appendChild(productName);
@@ -42,15 +48,26 @@ if (!productLocalStorage) {
         let productColor = document.createElement('p');
         productArticle.appendChild(productColor);
         productColor.innerHTML = productLocalStorage[i].color;
-        productColor.style.fontSize = "22px"; // increase the font size 
+        productColor.style.fontSize = '22px'; // increase the font size 
 
         // add price
         let productPrice = document.createElement('p');
         productArticle.appendChild(productPrice);
         productPrice.innerHTML = productLocalStorage[i].price + ' €'; // puts euro symbol in front of number 
-        productPrice.style.fontSize = "22px";
+        productPrice.style.fontSize = '22px';
 
         // add quantity
-
+        let productQuantity = document.createElement('input');
+        productItemContentQuantity.appendChild(productQuantity);
+        productQuantity.value = productLocalStorage[i].quantity;
+        productQuantity.className = 'itemQuantity';
+        productQuantity.setAttribute('type', 'number');
+        productQuantity.setAttribute('min', '1');
+        productQuantity.setAttribute('max', '100');
+        productQuantity.setAttribute('name', 'itemQuantity');
+        productQuantity.style.fontSize = '22px';
     }
 }
+
+// want to add total price, total quantity price 
+// add delete button and way to clear it from local storage
