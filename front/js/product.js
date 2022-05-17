@@ -110,9 +110,8 @@ function addToCart(event) {
         for (let i = 0; i < cartArray.length; i++) { 
             if (prodObject.name === cartArray[i].name && 
                 prodObject.option === cartArray[i].option) {
-                // if already in cart don't push, do increase qty
+                // if already in cart don't push, do increase quantity
                 cartArray[i].quantity = cartArray[i].quantity + prodObject.quantity;
-                // pushToCart = true;
                 syncCart();
             } else {
                 pushToCart = true;
