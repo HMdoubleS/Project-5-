@@ -24,8 +24,8 @@ const prodObject = {
     quantity: 1
 }
 
-//getting the item from the api
-fetch('http://localhost:3000/api/products/' + idProduct) // fetches the data from the api with the ID of the current product
+//getting the item from the api with the ID of the current product
+fetch('http://localhost:3000/api/products/' + idProduct) 
     .then(response => response.json())
     .then(data => {
         console.log(data);
@@ -112,7 +112,7 @@ function addToCart(event) {
                 prodObject.option === cartArray[i].option) {
                 // if already in cart don't push, do increase quantity
                 cartArray[i].quantity = cartArray[i].quantity + prodObject.quantity;
-                syncCart();
+                syncCart(); // calling the function syncCart
             } else {
                 pushToCart = true;
             } 
