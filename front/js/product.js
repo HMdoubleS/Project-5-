@@ -36,7 +36,7 @@ fetch('http://localhost:3000/api/products/' + idProduct)
   
 
 function makeProductCard(obj) {
-    // variables for DOM elements
+    // getting access to variables for DOM elements
     const prodImg = document.querySelector('.item__img');
     const prodDescription = document.getElementById('description'); 
     const prodPrice = document.getElementById('price');
@@ -59,10 +59,12 @@ function makeProductCard(obj) {
     prodDescription.innerHTML = obj.description;
 
     // updating quantity event
-    quantity.addEventListener('change', updateQuantity); // listener for achange event that will run the updateQuantity function
+    quantity.addEventListener('change', updateQuantity); 
+    // listener for a change event that will run the updateQuantity function
 
     // add to cart
-    addBtn.addEventListener('click', addToCart); // listener for a click event that will run the addToCart function
+    addBtn.addEventListener('click', addToCart); 
+    // listener for a click event that will run the addToCart function
 
     // color change pulldown
     for (let i=0; i < obj.colors.length; i++) {

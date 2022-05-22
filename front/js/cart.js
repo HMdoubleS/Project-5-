@@ -10,67 +10,81 @@ if (!productLocalStorage) {
         // create article 
         let productArticle = document.createElement('article');
         document.querySelector('#cart__items').appendChild(productArticle);
-        productArticle.className = 'cart__item';
+        productArticle.classList.add('cart__item');
         productArticle.setAttribute('data-id', productLocalStorage[i].idProduct);
         productArticle.setAttribute('data-color', productLocalStorage[i].color);
 
         // create image div
         let productDivImage = document.createElement('div');
+        productDivImage.classList.add('cart__item__img');
         productArticle.appendChild(productDivImage);
-        productDivImage.className = 'cart__item__img';
+        
 
         // create image
         let productImage = document.createElement('img');
-        productDivImage.appendChild(productImage);
         productImage.src = productLocalStorage[i].imageUrl;
+        productDivImage.appendChild(productImage);
         
         //create cart item content div
         let productItemContent = document.createElement('div');
+        productItemContent.classList.add('cart__item__content');
         productArticle.appendChild(productItemContent);
-        productItemContent.className = 'cart__item__content';
+       
 
         //create cart item content description div
         let productItemContentDescription = document.createElement('div');
+        productItemContentDescription.classList.add('cart__item__content__description');
         productItemContent.appendChild(productItemContentDescription);
-        productItemContentDescription.className = 'cart__item__content__description';
+        
 
         //create cart item content settings div
         let productItemContentSettings = document.createElement('div');
-        productArticle.appendChild(productItemContentSettings);
-        productItemContentSettings.className = 'cart__item__content__settings';
+        productItemContentSettings.classList.add('cart__item__content__settings');
+        productItemContent.appendChild(productItemContentSettings);
+        
 
         //create cart item content settings quantity div
         let productItemContentQuantity = document.createElement('div');
+        productItemContentQuantity.classList.add('cart__item__content__settings__quantity');
         productItemContentSettings.appendChild(productItemContentQuantity);
-        productItemContentQuantity.className = 'cart__item__content__quantity';
+        
+
+        // create cart delete div 
+        let productDeleteItem = document.createElement('div');
+        productDeleteItem.classList.add('cart__item__content__settings__delete');
+        productItemContentSettings.appendChild(productDeleteItem);
+        
 
         // add title
         let productName = document.createElement('h2');
-        productItemContentDescription.appendChild(productName);
         productName.innerHTML = productLocalStorage[i].name;
+        productItemContentDescription.appendChild(productName);
 
         // add color
         let productColor = document.createElement('p');
-        productArticle.appendChild(productColor);
         productColor.innerHTML = productLocalStorage[i].color;
-        productColor.style.fontSize = '22px'; // increase the font size 
-
+        productItemContentDescription.appendChild(productColor);
+        
         // add price
         let productPrice = document.createElement('p');
-        productArticle.appendChild(productPrice);
-        productPrice.innerHTML = productLocalStorage[i].price + ' €'; // puts euro symbol in front of number 
-        productPrice.style.fontSize = '22px';
+        productPrice.innerHTML = ' €' + productLocalStorage[i].price; // puts euro symbol behind number 
+        productItemContentDescription.appendChild(productPrice);
+        
+        // add quantity text
+        let productQuantityText = document.createElement('p');
+        productQuantityText.innerHTML = 'Qté : ';
+        productItemContentQuantity.appendChild(productQuantityText);
+
 
         // add quantity
         let productQuantity = document.createElement('input');
-        productItemContentQuantity.appendChild(productQuantity);
         productQuantity.value = productLocalStorage[i].quantity;
         productQuantity.className = 'itemQuantity';
         productQuantity.setAttribute('type', 'number');
         productQuantity.setAttribute('min', '1');
         productQuantity.setAttribute('max', '100');
         productQuantity.setAttribute('name', 'itemQuantity');
-        productQuantity.style.fontSize = '22px';
+        productItemContentQuantity.appendChild(productQuantity);
     }
 }
 
