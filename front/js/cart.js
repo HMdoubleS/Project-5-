@@ -1,6 +1,7 @@
 let productLocalStorage = JSON.parse(localStorage.getItem('cart'));
 
 
+
 // if product is not in local storage
 if (!productLocalStorage) { 
     
@@ -9,10 +10,10 @@ if (!productLocalStorage) {
     for (let i=0; i < productLocalStorage.length; i++) {
         // create article 
         let productArticle = document.createElement('article');
-        document.querySelector('#cart__items').appendChild(productArticle);
         productArticle.classList.add('cart__item');
         productArticle.setAttribute('data-id', productLocalStorage[i].idProduct);
         productArticle.setAttribute('data-color', productLocalStorage[i].color);
+        document.querySelector('#cart__items').appendChild(productArticle);
 
         // create image div
         let productDivImage = document.createElement('div');
