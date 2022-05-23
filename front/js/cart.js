@@ -96,6 +96,9 @@ if (!productLocalStorage) {
         productDeleteItem.appendChild(productDelete);
     }
 }
+// total price function
+
+
 
 // Delete item function
 function deleteProduct() {
