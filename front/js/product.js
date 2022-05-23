@@ -1,5 +1,5 @@
-const idProduct = new URL(window.location.href).searchParams.get("id"); //returns the url of the current page
-console.log(idProduct);
+const _id = new URL(window.location.href).searchParams.get('id'); //returns the url of the current page
+console.log(_id);
 
 
 //set up the cart - 3 places local storage, array, and JSON
@@ -25,7 +25,7 @@ const prodObject = {
 }
 
 //getting the item from the api with the ID of the current product
-fetch('http://localhost:3000/api/products/' + idProduct) 
+fetch('http://localhost:3000/api/products/' + _id) 
     .then(response => response.json())
     .then(data => {
         console.log(data);
@@ -93,9 +93,10 @@ function updateColor(event) {
 
 //initialize product
 function initProdObject(object) {
-    prodObject.id = object.id;
+    prodObject._id = object._id;
     prodObject.name = object.name;
     prodObject.imageUrl = object.imageUrl;
+    prodObject.altTxt = object.altTxt;
     prodObject.price = object.price;
 
 

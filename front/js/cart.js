@@ -11,7 +11,7 @@ if (!productLocalStorage) {
         // create article 
         let productArticle = document.createElement('article');
         productArticle.classList.add('cart__item');
-        productArticle.setAttribute('data-id', productLocalStorage[i].idProduct);
+        productArticle.setAttribute('data-id', productLocalStorage[i]._id);
         productArticle.setAttribute('data-color', productLocalStorage[i].color);
         document.querySelector('#cart__items').appendChild(productArticle);
 
@@ -24,6 +24,7 @@ if (!productLocalStorage) {
         // create image
         let productImage = document.createElement('img');
         productImage.src = productLocalStorage[i].imageUrl;
+        productImage.alt = productLocalStorage[i].altTxt;
         productDivImage.appendChild(productImage);
         
         //create cart item content div
@@ -50,10 +51,7 @@ if (!productLocalStorage) {
         productItemContentSettings.appendChild(productItemContentQuantity);
         
 
-        // create cart delete div 
-        let productDeleteItem = document.createElement('div');
-        productDeleteItem.classList.add('cart__item__content__settings__delete');
-        productItemContentSettings.appendChild(productDeleteItem);
+       
         
 
         // add title
@@ -76,7 +74,6 @@ if (!productLocalStorage) {
         productQuantityText.innerHTML = 'Qté : ';
         productItemContentQuantity.appendChild(productQuantityText);
 
-
         // add quantity
         let productQuantity = document.createElement('input');
         productQuantity.value = productLocalStorage[i].quantity;
@@ -86,7 +83,23 @@ if (!productLocalStorage) {
         productQuantity.setAttribute('max', '100');
         productQuantity.setAttribute('name', 'itemQuantity');
         productItemContentQuantity.appendChild(productQuantity);
+
+        // create cart delete div 
+        let productDeleteItem = document.createElement('div');
+        productDeleteItem.classList.add('cart__item__content__settings__delete');
+        productItemContentSettings.appendChild(productDeleteItem);
+
+        // delete button text
+        let productDelete = document.createElement('p');
+        productDelete.className = 'deleteItem';
+        productDelete.innerHTML = 'Delete';
+        productDeleteItem.appendChild(productDelete);
     }
+}
+
+// Delete item function
+function deleteProduct() {
+    let delete_btn = document.querySelectorAll('.deleteItem');
 }
 
 // want to add total price, total quantity price 
