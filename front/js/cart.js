@@ -38,22 +38,6 @@ if (!productLocalStorage) {
         productItemContentDescription.classList.add('cart__item__content__description');
         productItemContent.appendChild(productItemContentDescription);
         
-
-        //create cart item content settings div
-        let productItemContentSettings = document.createElement('div');
-        productItemContentSettings.classList.add('cart__item__content__settings');
-        productItemContent.appendChild(productItemContentSettings);
-        
-
-        //create cart item content settings quantity div
-        let productItemContentQuantity = document.createElement('div');
-        productItemContentQuantity.classList.add('cart__item__content__settings__quantity');
-        productItemContentSettings.appendChild(productItemContentQuantity);
-        
-
-       
-        
-
         // add title
         let productName = document.createElement('h2');
         productName.innerHTML = productLocalStorage[i].name;
@@ -66,8 +50,19 @@ if (!productLocalStorage) {
         
         // add price
         let productPrice = document.createElement('p');
-        productPrice.innerHTML = ' €' + productLocalStorage[i].price; // puts euro symbol behind number 
+        productPrice.innerHTML = ' €' + productLocalStorage[i].price; // puts euro symbol in front of number 
         productItemContentDescription.appendChild(productPrice);
+
+        //create cart item content settings div
+        let productItemContentSettings = document.createElement('div');
+        productItemContentSettings.classList.add('cart__item__content__settings');
+        productItemContent.appendChild(productItemContentSettings);
+        
+
+        //create cart item content settings quantity div
+        let productItemContentQuantity = document.createElement('div');
+        productItemContentQuantity.classList.add('cart__item__content__settings__quantity');
+        productItemContentSettings.appendChild(productItemContentQuantity);
         
         // add quantity text
         let productQuantityText = document.createElement('p');
