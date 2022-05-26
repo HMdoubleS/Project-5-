@@ -91,14 +91,22 @@ if (!productLocalStorage) {
         productDeleteItem.appendChild(productDelete);
     }
 }
+
+// delete item 
+const deleteItem = document.getElementsByClassName('deleteItem');
+deleteItem.addEventListener('click', (e) => {
+
+})
+
+
+
+
 // total price function
 
 
 
-// Delete item function
-function deleteProduct() {
-    let delete_btn = document.querySelectorAll('.deleteItem');
-}
+
+
 
 // want to add total price, total quantity price 
 // add delete button and way to clear it from local storage
