@@ -101,12 +101,11 @@ deleteItem.addEventListener('click', (e) => {
 
 
 
-// total price function
+// total quantity 
 
 
+// total price
 
 
+// form data
 
-
-// want to add total price, total quantity price 
-// add delete button and way to clear it from local storage
