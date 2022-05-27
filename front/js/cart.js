@@ -97,14 +97,33 @@ const deleteItem = document.getElementsByClassName('deleteItem');
 // deleteItem.addEventListener
 
 
-// total quantity
+// total quantity and price
 function getTotals(){
-let productTotalQuantity = document.getElementById('totalQuantity');
 
+    // total quantity
+    let productQte = document.getElementsByClassName('itemQuantity');
+    let myLength = productQte.length;
+    let totalQte = 0;
 
+    for (let i=0; i < myLength; i++) {
+        totalQte += productQte[i].valueAsNumber;
+    }
 
+    let productTotalQuantity = document.getElementById('totalQuantity');
+    productTotalQuantity.innerHTML = totalQte;
 
-// total price     
+    // total price    
+    let totalPrice = 0; 
+        for (let i = 0; i < myLength; i++) { 
+            totalPrice += (productQte[i].valueAsNumber * productLocalStorage[i].price);
+        }
+    
+    let productTotalPrice = document.getElementById('totalPrice');
+    productTotalPrice.innerHTML = totalPrice;    
 }
+
+getTotals();
+
+
 // form data
 
