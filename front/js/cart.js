@@ -94,18 +94,17 @@ if (!productLocalStorage) {
 
 // delete item 
 const deleteItem = document.getElementsByClassName('deleteItem');
-deleteItem.addEventListener('click', (e) => {
-
-})
+// deleteItem.addEventListener
 
 
+// total quantity
+function getTotals(){
+let productTotalQuantity = document.getElementById('totalQuantity');
 
 
-// total quantity 
 
 
-// total price
-
-
+// total price     
+}
 // form data
 
