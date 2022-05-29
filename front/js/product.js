@@ -104,20 +104,19 @@ function initProdObject(object) {
 
 // add to cart event andfunction
 function addToCart(event) {
-    let pushToCart = false; // indicates whether to put the item in the cart
+    let pushToCart = true; // indicates whether to put the item in the cart
     
-    if (cartArray.length === 0) { // is it empty? 
-        pushToCart = true;
-    } else {
+    // is it empty? 
+    if (cartArray.length > 0) { 
         // iterates through each item in the cartArray to see if name and options matches current cart items
         for (let i = 0; i < cartArray.length; i++) { 
             if (prodObject.name === cartArray[i].name && 
-                prodObject.option === cartArray[i].option) {
+                prodObject.color === cartArray[i].color) { 
                 // if already in cart don't push, do increase quantity
                 cartArray[i].quantity = cartArray[i].quantity + prodObject.quantity;
+                // needs to be set to false because we do not want to push
+                pushToCart = false;
                 syncCart(); // calling the function syncCart
-            } else {
-                pushToCart = true;
             } 
         }
     }
@@ -135,7 +134,7 @@ function syncCart() {
 }
 
 
-// needs a confirmation and link to cart page 
+
 
     
 

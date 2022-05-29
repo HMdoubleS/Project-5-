@@ -4,7 +4,7 @@ let productLocalStorage = JSON.parse(localStorage.getItem('cart'));
 
 // if product is not in local storage
 if (!productLocalStorage) { 
-    
+    // not sure what I should put in here
 } else {
     // iterate through all items in the cart
     for (let i=0; i < productLocalStorage.length; i++) {
@@ -89,13 +89,23 @@ if (!productLocalStorage) {
         productDelete.className = 'deleteItem';
         productDelete.innerHTML = 'Delete';
         productDeleteItem.appendChild(productDelete);
+        // delete button even listener
+        productDelete.addEventListener('click', deleteItem);
     }
 }
-
-// delete item 
-const deleteItem = document.getElementsByClassName('deleteItem');
-// deleteItem.addEventListener
-
+// delete item function
+function deleteItem(event){
+    // removed from the DOM
+    console.log(event);
+    const deleteBtn = event.target;
+    const productCard = deleteBtn.parentElement.parentElement.parentElement.parentElement;
+    productCard.remove();
+    // change total price in DOM
+    // changePrice(event)
+    // change total quantity in DOM
+    // modifyQte(event)
+    // removed from localStorage
+}
 
 // total quantity and price
 function getTotals(){
@@ -110,13 +120,13 @@ function getTotals(){
     }
 
     let productTotalQuantity = document.getElementById('totalQuantity');
-    productTotalQuantity.innerHTML = totalQte;
+    productTotalQuantity.innerHTML = totalQte; // inserting the total quantity into the html
 
     // total price    
     let totalPrice = 0; 
         for (let i = 0; i < myLength; i++) { 
             totalPrice += (productQte[i].valueAsNumber * productLocalStorage[i].price);
-        }
+        } // total price = price times the product quantity
     
     let productTotalPrice = document.getElementById('totalPrice');
     productTotalPrice.innerHTML = totalPrice;    
@@ -124,6 +134,21 @@ function getTotals(){
 
 getTotals();
 
+// need a function for changing quantity on the cart page
+function modifyQte(event){
+    const modifyQte = document.querySelectorAll('.itemQuantity');
+}
+
+modifyQte();
+
 
 // form data
+// const form = document.getElementsByClassName(cart__order__form);
 
+
+
+function syncCart() {
+    cartString = JSON.stringify(cartArray); // takes data and turns it into a JSON string
+    localStorage.setItem('cart', cartString); // add the data to the cart localStorage
+    cartArray = JSON.parse(cartString); // cartArray is the parsed version of the cartString object
+}
