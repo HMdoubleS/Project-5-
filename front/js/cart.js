@@ -78,6 +78,7 @@ if (!productLocalStorage) {
         productQuantity.setAttribute('max', '100');
         productQuantity.setAttribute('name', 'itemQuantity');
         productItemContentQuantity.appendChild(productQuantity);
+        productQuantity.addEventListener('click', getTotals);
 
         // create cart delete div 
         let productDeleteItem = document.createElement('div');
@@ -95,11 +96,11 @@ if (!productLocalStorage) {
 }
 // delete item function
 function deleteItem(event){
-    // removed from the DOM
+    // remove element from the DOM
     console.log(event);
     const deleteBtn = event.target;
     const productCard = deleteBtn.parentElement.parentElement.parentElement.parentElement;
-    productCard.remove();
+    productCard.remove(); 
     // change total price in DOM
     // changePrice(event)
     // change total quantity in DOM
@@ -109,7 +110,6 @@ function deleteItem(event){
 
 // total quantity and price
 function getTotals(){
-
     // total quantity
     let productQte = document.getElementsByClassName('itemQuantity');
     let myLength = productQte.length;
@@ -129,26 +129,21 @@ function getTotals(){
         } // total price = price times the product quantity
     
     let productTotalPrice = document.getElementById('totalPrice');
-    productTotalPrice.innerHTML = totalPrice;    
+    productTotalPrice.innerHTML = totalPrice;  
+    
 }
 
 getTotals();
 
 // need a function for changing quantity on the cart page
-function modifyQte(event){
-    const modifyQte = document.querySelectorAll('.itemQuantity');
-}
+// function modifyQte(event){
+//     const modifyQte = document.querySelectorAll('.itemQuantity');
+// }
 
-modifyQte();
+// modifyQte();
 
 
 // form data
 // const form = document.getElementsByClassName(cart__order__form);
 
-
-
-function syncCart() {
-    cartString = JSON.stringify(cartArray); // takes data and turns it into a JSON string
-    localStorage.setItem('cart', cartString); // add the data to the cart localStorage
-    cartArray = JSON.parse(cartString); // cartArray is the parsed version of the cartString object
-}
+// need a syncCart function for this page
