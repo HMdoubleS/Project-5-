@@ -1,10 +1,9 @@
 let productLocalStorage = JSON.parse(localStorage.getItem('cart'));
 
 
-
 // if product is not in local storage
 if (!productLocalStorage) { 
-    // not sure what I should put in here
+    
 } else {
     // iterate through all items in the cart
     for (let i=0; i < productLocalStorage.length; i++) {
@@ -92,6 +91,12 @@ if (!productLocalStorage) {
         productDeleteItem.appendChild(productDelete);
         // delete button even listener
         productDelete.addEventListener('click', deleteItem);
+
+        // order button
+        const orderBtn = document.getElementById('order');
+        orderBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+        })
     }
 }
 // delete item function
@@ -106,6 +111,7 @@ function deleteItem(event){
     // change total quantity in DOM
     // modifyQte(event)
     // removed from localStorage
+    syncCart();
 }
 
 // total quantity and price
@@ -135,15 +141,23 @@ function getTotals(){
 
 getTotals();
 
-// need a function for changing quantity on the cart page
-// function modifyQte(event){
-//     const modifyQte = document.querySelectorAll('.itemQuantity');
-// }
+// modify quantity 
+function modifyQte(){
 
-// modifyQte();
+}
+
+// modify price
+
+
+
+
+
+
+
 
 
 // form data
 // const form = document.getElementsByClassName(cart__order__form);
 
 // need a syncCart function for this page
+
