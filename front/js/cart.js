@@ -111,7 +111,7 @@ function deleteItem(event){
     // change total quantity in DOM
     // modifyQte(event)
     // removed from localStorage
-    syncCart();
+    
 }
 
 // total quantity and price
