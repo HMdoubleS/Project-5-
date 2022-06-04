@@ -155,6 +155,11 @@ let addressRegExp = new RegExp("^[0-9]{1,3}(?:(?:[,. ]){1}[-a-zA-Zàâäéèêë
 
 function getForm(){
     let form = document.querySelector('.cart__order__form');
+    let inputFirstName = document.getElementById('firstName');
+    let inputLastName = document.getElementById('lastName');
+    let inputAddress = document.getElementById('address');
+    let inputCity = document.getElementById('city');
+    let inputEmail = document.getElementById('email');
 
     // first name event
     form.firstName.addEventListener('change', function(){
@@ -183,7 +188,7 @@ function getForm(){
 
     // first name validation
     const validFirstName = function(inputFirstName) {
-        let firstNameErrorMessage = document.getElementById('firstName');
+        let firstNameErrorMessage = document.getElementById('firstNameErrorMsg');
         if (charRegExp.test(inputFirstName.value)) {
             firstNameErrorMessage.innerHTML = '';
         } else {
@@ -193,7 +198,7 @@ function getForm(){
 
     // last name validation
     const validLastName = function(inputLastName) {
-        let lastNameErrorMessage = document.getElementById('lastName');
+        let lastNameErrorMessage = document.getElementById('lastNameErrorMsg');
         if (charRegExp.test(inputLastName.value)) {
             lastNameErrorMessage.innerHTML = '';
         } else {
@@ -203,7 +208,7 @@ function getForm(){
 
     // address validation
     const validAddress = function(inputAddress) {
-        let addressErrorMessage = document.getElementById('address');
+        let addressErrorMessage = document.getElementById('addressErrorMsg');
         if (addressRegExp.test(inputAddress.value)) {
             addressErrorMessage.innerHTML = '';
         } else {
@@ -213,7 +218,7 @@ function getForm(){
 
     // city validation
     const validCity = function(inputCity) {
-        let cityErrorMessage = document.getElementById('city');
+        let cityErrorMessage = document.getElementById('cityErrorMsg');
         if (charRegExp.test(inputCity.value)) {
             cityErrorMessage.innerHTML = '';
         } else {
@@ -223,7 +228,7 @@ function getForm(){
 
     //email validation
     const validEmail = function(inputEmail) {
-        let emailErrorMessage = document.getElementById('email');
+        let emailErrorMessage = document.getElementById('emailErrorMsg');
         if (emailRegExp.test(inputEmail.value)) {
             emailErrorMessage.innerHTML = '';
         } else {
@@ -237,11 +242,17 @@ function postForm(){
     let order = document.getElementById('order');
     order.addEventListener('click', (event) => {
         event.preventDefault();
-    })
 
-}
-
-
+    // contact object 
+    let contact = {
+            firstName: inputFirstName.value,
+            lastName: inputLastName.value,
+            address: inputAddress.value,
+            city: inputCity.value,
+            email: inputEmail.value,
+        }
+    }
+)}
 
 // need a syncCart function for this page
 
