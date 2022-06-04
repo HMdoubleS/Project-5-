@@ -1,6 +1,5 @@
 let productLocalStorage = JSON.parse(localStorage.getItem('cart'));
 
-
 // if product is not in local storage
 if (!productLocalStorage) { 
     
@@ -112,6 +111,7 @@ function deleteItem(event){
     // modifyQte(event)
     // removed from localStorage
     
+    
 }
 
 // total quantity and price
@@ -136,7 +136,7 @@ function getTotals(){
     
     let productTotalPrice = document.getElementById('totalPrice');
     productTotalPrice.innerHTML = totalPrice;  
-    
+    // syncCart();
 }
 
 getTotals();
@@ -144,20 +144,105 @@ getTotals();
 // modify quantity 
 function modifyQte(){
 
+
 }
 
-// modify price
+
+// getting form data and event listeners
+let emailRegExp = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$');
+let charRegExp = new RegExp("^[a-zA-Z ,.'-]+$");
+let addressRegExp = new RegExp("^[0-9]{1,3}(?:(?:[,. ]){1}[-a-zA-Zàâäéèêëïîôöùûüç]+)+"); 
+
+function getForm(){
+    let form = document.querySelector('.cart__order__form');
+
+    // first name event
+    form.firstName.addEventListener('change', function(){
+        validFirstName(this);
+    })
+
+    // last name event
+    form.lastName.addEventListener('change', function(){
+        validLastName(this);
+    })
+
+    // address event
+    form.address.addEventListener('change', function(){
+        validAddress(this);
+    })
+
+    // city event
+    form.city.addEventListener('change', function(){
+        validCity(this);
+    })
+
+    // email event
+    form.email.addEventListener('change', function(){
+        validEmail(this);
+    })
+
+    // first name validation
+    const validFirstName = function(inputFirstName) {
+        let firstNameErrorMessage = document.getElementById('firstName');
+        if (charRegExp.test(inputFirstName.value)) {
+            firstNameErrorMessage.innerHTML = '';
+        } else {
+            firstNameErrorMessage.innerHTML = 'please fill in this field';
+        }
+    } 
+
+    // last name validation
+    const validLastName = function(inputLastName) {
+        let lastNameErrorMessage = document.getElementById('lastName');
+        if (charRegExp.test(inputLastName.value)) {
+            lastNameErrorMessage.innerHTML = '';
+        } else {
+            lastNameErrorMessage.innerHTML = 'please fill in this field';
+        }
+    } 
+
+    // address validation
+    const validAddress = function(inputAddress) {
+        let addressErrorMessage = document.getElementById('address');
+        if (addressRegExp.test(inputAddress.value)) {
+            addressErrorMessage.innerHTML = '';
+        } else {
+            addressErrorMessage.innerHTML = 'please fill in this field';
+        }
+    }
+
+    // city validation
+    const validCity = function(inputCity) {
+        let cityErrorMessage = document.getElementById('city');
+        if (charRegExp.test(inputCity.value)) {
+            cityErrorMessage.innerHTML = '';
+        } else {
+            cityErrorMessage.innerHTML = 'please fill in this field';
+        }
+    } 
+
+    //email validation
+    const validEmail = function(inputEmail) {
+        let emailErrorMessage = document.getElementById('email');
+        if (emailRegExp.test(inputEmail.value)) {
+            emailErrorMessage.innerHTML = '';
+        } else {
+            emailErrorMessage.innerHTML = 'please fill in this field';
+        }
+    } 
+}
+
+// post form
+function postForm(){
+    let order = document.getElementById('order');
+    order.addEventListener('click', (event) => {
+        event.preventDefault();
+    })
+
+}
 
 
-
-
-
-
-
-
-
-// form data
-// const form = document.getElementsByClassName(cart__order__form);
 
 // need a syncCart function for this page
 
+    
