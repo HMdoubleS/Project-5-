@@ -110,7 +110,7 @@ function deleteItem(event){
     // change total quantity in DOM
     // modifyQte(event)
     // removed from localStorage
-    
+    syncCart();
     
 }
 
@@ -135,15 +135,14 @@ function getTotals(){
         } // total price = price times the product quantity
     
     let productTotalPrice = document.getElementById('totalPrice');
-    productTotalPrice.innerHTML = totalPrice;  
-    // syncCart();
+    productTotalPrice.innerHTML = totalPrice;     
 }
 
 getTotals();
 
 // modify quantity 
 function modifyQte(){
-
+// not actually sure how this would be different than the totals functions
 
 }
 
@@ -243,17 +242,33 @@ function postForm(){
     order.addEventListener('click', (event) => {
         event.preventDefault();
 
-    // contact object 
-    let contact = {
-            firstName: inputFirstName.value,
-            lastName: inputLastName.value,
-            address: inputAddress.value,
-            city: inputCity.value,
-            email: inputEmail.value,
+        // contact object 
+        let contact = {
+                firstName: inputFirstName.value,
+                lastName: inputLastName.value,
+                address: inputAddress.value,
+                city: inputCity.value,
+                email: inputEmail.value,
+        }
+
+        // creation of product array
+        let cart = JSON.parse(localStorage.getItem('cart'));
+        let products = [];
+        for (let i = 0; i < cart.length; i++) {
+            products.push(cart[i].id);
         }
     }
+
+    // needs form and product values
+    // needs a fetch call and to also link to confirmation page
+
+
 )}
 
-// need a syncCart function for this page
 
+
+// need a syncCart function for this page
+function syncCart(){
+    localStorage.setItem('cart', JSON.stringify(productLocalStorage));
+}
     
