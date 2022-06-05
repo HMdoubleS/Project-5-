@@ -1,3 +1,4 @@
+
 let productLocalStorage = JSON.parse(localStorage.getItem('cart'));
 
 // if product is not in local storage
@@ -76,7 +77,7 @@ if (!productLocalStorage) {
         productQuantity.setAttribute('max', '100');
         productQuantity.setAttribute('name', 'itemQuantity');
         productItemContentQuantity.appendChild(productQuantity);
-        productQuantity.addEventListener('click', getTotals);
+        productQuantity.addEventListener('change', updateQuantity);
 
         // create cart delete div 
         let productDeleteItem = document.createElement('div');
@@ -103,18 +104,45 @@ function deleteItem(event){
     // remove element from the DOM
     console.log(event);
     const deleteBtn = event.target;
-    const productCard = deleteBtn.parentElement.parentElement.parentElement.parentElement;
-    productCard.remove(); 
-    // change total price in DOM
-    // changePrice(event)
-    // change total quantity in DOM
-    // modifyQte(event)
-    // removed from localStorage
+    const productCard = deleteBtn.parentElement.parentElement.parentElement.parentElement; // traversing the DOM to the article
+    const productId = productCard.dataset.id; // grab the data-id of the item being deleted 
+    const productColor = productCard.dataset.color // grab the data-color of the item being deleted
+    productCard.remove();
+
+    // remove item from the array
+    // counts backwards through the array and when it finds the items with those property values it deletes it
+    for (let i = productLocalStorage.length - 1; i >= 0; i--) {
+        if (productId === productLocalStorage[i]._id && productColor === productLocalStorage[i].color) {
+           productLocalStorage.splice(i, 1);
+        }
+    }
+    // change total price and quantity in DOM to reflect deleted cart item
+    getTotals();
+    // update localStorage
     syncCart();
-    
 }
 
-// total quantity and price
+// modify quantity
+function updateQuantity(event){
+    // remove element from the DOM
+    console.log(event);
+    const quantityInput = event.target;
+    const productCard = quantityInput.parentElement.parentElement.parentElement; // traversing the DOM to the article
+    const productId = productCard.dataset.id; // grab the data-id
+    const productColor = productCard.dataset.color // grab the data-color
+
+    for (let i=0; i < productLocalStorage.length; i++) {
+        if (productId === productLocalStorage[i]._id && productColor === productLocalStorage[i].color) {
+           productLocalStorage[i].push;
+        }
+    }
+    // modify total price and quantity 
+    updateQuantity();
+    // update localStorage
+    syncCart();
+}
+
+// total quantity and price on page load and when you change the quantity or delete an item
 function getTotals(){
     // total quantity
     let productQte = document.getElementsByClassName('itemQuantity');
@@ -136,18 +164,14 @@ function getTotals(){
     
     let productTotalPrice = document.getElementById('totalPrice');
     productTotalPrice.innerHTML = totalPrice;     
+    syncCart();
 }
 
 getTotals();
 
-// modify quantity 
-function modifyQte(){
-// not actually sure how this would be different than the totals functions
-
-}
 
 
-// getting form data and event listeners
+// form data and event listeners for change events
 let emailRegExp = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$');
 let charRegExp = new RegExp("^[a-zA-Z ,.'-]+$");
 let addressRegExp = new RegExp("^[0-9]{1,3}(?:(?:[,. ]){1}[-a-zA-Zàâäéèêëïîôöùûüç]+)+"); 
@@ -252,8 +276,7 @@ function postForm(){
         }
 
         // creation of product array
-        let cart = JSON.parse(localStorage.getItem('cart'));
-        let products = [];
+        const products = [];
         for (let i = 0; i < cart.length; i++) {
             products.push(cart[i].id);
         }
@@ -268,7 +291,10 @@ function postForm(){
 
 
 // need a syncCart function for this page
-function syncCart(){
-    localStorage.setItem('cart', JSON.stringify(productLocalStorage));
+function syncCart() {
+    // updates the cart array
+    let cartString = JSON.stringify(productLocalStorage); // takes data and turns it into a JSON string
+    localStorage.setItem('cart', cartString); // add the data to the cart array localStorage
+    productLocalStorage = JSON.parse(cartString); // productLocalStorage is the parsed version of the cartString
 }
     
