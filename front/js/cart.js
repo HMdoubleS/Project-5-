@@ -122,24 +122,24 @@ function deleteItem(event){
     syncCart();
 }
 
-// modify quantity
-function updateQuantity(e){
-    console.log(e);
-    const quantityInput = e.target.value;
-    const productCard = quantityInput; // traversing the DOM to the article
-    const productId = productCard.dataset.id; // grab the data-id
-    const productColor = productCard.dataset.color // grab the data-color
+// // modify quantity
+// function updateQuantity(e){
+//     console.log(e);
+//     const quantityInput = e.target.value;
+//     const productCard = quantityInput; // traversing the DOM to the article
+//     const productId = productCard.dataset.id; // grab the data-id
+//     const productColor = productCard.dataset.color // grab the data-color
 
-    for (let i=0; i < productLocalStorage.length; i++) {
-        if (productId === productLocalStorage[i]._id && productColor === productLocalStorage[i].color) {
-           productLocalStorage[i].push;
-        }
-    }
-    // modify total price and quantity 
-    updateQuantity();
-    // update localStorage
-    syncCart();
-}
+//     for (let i=0; i < productLocalStorage.length; i++) {
+//         if (productId === productLocalStorage[i]._id && productColor === productLocalStorage[i].color) {
+//            productLocalStorage[i].push;
+//         }
+//     }
+//     // modify total price and quantity 
+//     updateQuantity();
+//     // update localStorage
+//     syncCart();
+// }
 
 // total quantity and price on page load and when you change the quantity or delete an item
 function getTotals(){
@@ -276,17 +276,19 @@ function postForm(){
 
         // creation of product array
         const products = [];
-        for (let i = 0; i < cart.length; i++) {
-            products.push(cart[i].id);
+        for (let i = 0; i < productLocalStorage.length; i++) {
+            products.push(productLocalStorage[i]._id);
         }
+     
+        
+    // need to collect form data
+    // need to create a POST request
+
+
     }
 
-    // needs form and product values
-    // needs a fetch call and to also link to confirmation page
-
-
 )}
-
+postForm();
 
 
 // need a syncCart function for this page
