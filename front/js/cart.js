@@ -123,11 +123,10 @@ function deleteItem(event){
 }
 
 // modify quantity
-function updateQuantity(event){
-    // remove element from the DOM
-    console.log(event);
-    const quantityInput = event.target;
-    const productCard = quantityInput.parentElement.parentElement.parentElement; // traversing the DOM to the article
+function updateQuantity(e){
+    console.log(e);
+    const quantityInput = e.target.value;
+    const productCard = quantityInput; // traversing the DOM to the article
     const productId = productCard.dataset.id; // grab the data-id
     const productColor = productCard.dataset.color // grab the data-color
 
