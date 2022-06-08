@@ -92,11 +92,11 @@ if (!productLocalStorage) {
         // delete button even listener
         productDelete.addEventListener('click', deleteItem);
 
-        // order button
-        const orderBtn = document.getElementById('order');
-        orderBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-        })
+        // // order button
+        // const orderBtn = document.getElementById('order');
+        // orderBtn.addEventListener('click', (e) => {
+        //     e.preventDefault();
+        // })
     }
 }
 // delete item function
@@ -177,6 +177,8 @@ let charAlphaRegExp = /^[A-Za-z -]{3,32}$/;
 let addressRegExp = /^[A-Za-z0-9 -#./&']{7,32}$/; 
 
 function getForm(){
+
+    //getting access to form data in the DOM
     let form = document.querySelector('.cart__order__form');
     let inputFirstName = document.getElementById('firstName');
     let inputLastName = document.getElementById('lastName');
@@ -184,37 +186,39 @@ function getForm(){
     let inputCity = document.getElementById('city');
     let inputEmail = document.getElementById('email');
 
-    // first name event
+    // first name change event
     form.firstName.addEventListener('change', function(){
         validFirstName(this);
     })
 
-    // last name event
+    // last name change event
     form.lastName.addEventListener('change', function(){
         validLastName(this);
     })
 
-    // address event
+    // address change event
     form.address.addEventListener('change', function(){
         validAddress(this);
     })
 
-    // city event
+    // city change event
     form.city.addEventListener('change', function(){
         validCity(this);
     })
 
-    // email event
+    // email change event
     form.email.addEventListener('change', function(){
         validEmail(this);
     })
 
+    //form data validation
     // first name validation
     let firstNameErrorMessage = document.getElementById('firstNameErrorMsg');
     function validFirstName(inputFirstName) {
         if (charAlphaRegExp.test(inputFirstName) == false) {
             return false;
         } else {
+            firstNameErrorMsg.innerHTML = null;
             return true;
         }
     };
@@ -222,9 +226,10 @@ function getForm(){
     // last name validation
     let lastNameErrorMessage = document.getElementById('lastNameErrorMsg');
     function validLastName(inputLastName) {
-        if (charAlphaRegExp.test(inputLastName)) {
+        if (charAlphaRegExp.test(inputLastName) == false) {
             return false;
         } else {
+            lastNameErrorMsg.innerHTML = null;
             return true;
         }
     }; 
@@ -232,9 +237,10 @@ function getForm(){
     // address validation
     let addressErrorMessage = document.getElementById('addressErrorMsg');
     function validAddress(inputAddress) {
-        if (addressRegExp.test(inputAddress)) {
+        if (addressRegExp.test(inputAddress) == false) {
             return false;
         } else {
+            addressErrorMsg.innerHTML = null;
             return true;
         }
     }
@@ -242,9 +248,10 @@ function getForm(){
     // city validation
     let cityErrorMessage = document.getElementById('cityErrorMsg');
     function validCity(inputCity) {
-        if (charRegExp.test(inputCity)) {
+        if (charRegExp.test(inputCity) == false) {
             return false
         } else {
+            cityErrorMsg.innerHTML = null;
             return true;
         }
     } 
@@ -252,9 +259,10 @@ function getForm(){
     //email validation
     let emailErrorMessage = document.getElementById('emailErrorMsg');
     function validEmail(inputEmail) {
-        if (emailRegExp.test(inputEmail)) {
+        if (emailRegExp.test(inputEmail) == false) {
             return false;
         } else {
+            emailErrorMsg.innerHTML = null;
             return true;
         }
     } 
@@ -267,13 +275,13 @@ function postForm(){
         event.preventDefault();
 
         // contact object 
-        // let contact = {
-        //         firstName: inputFirstName.value,
-        //         lastName: inputLastName.value,
-        //         address: inputAddress.value,
-        //         city: inputCity.value,
-        //         email: inputEmail.value,
-        // }
+        let contact = {
+                firstName: inputFirstName.value,
+                lastName: inputLastName.value,
+                address: inputAddress.value,
+                city: inputCity.value,
+                email: inputEmail.value,
+        }
 
         // creation of product array
         const products = [];
@@ -294,9 +302,8 @@ postForm();
 
 
 
-// need a syncCart function for this page
+// updates the cart array
 function syncCart() {
-    // updates the cart array
     let cartString = JSON.stringify(productLocalStorage); // takes data and turns it into a JSON string
     localStorage.setItem('cart', cartString); // add the data to the cart array localStorage
     productLocalStorage = JSON.parse(cartString); // productLocalStorage is the parsed version of the cartString
