@@ -176,16 +176,16 @@ let emailRegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-
 let charAlphaRegExp = /^[A-Za-z -]{3,32}$/;
 let addressRegExp = /^[A-Za-z0-9 -#./&']{7,32}$/; 
 
+//getting access to form data in the DOM
+let form = document.querySelector('.cart__order__form');
+let inputFirstName = document.getElementById('firstName');
+let inputLastName = document.getElementById('lastName');
+let inputAddress = document.getElementById('address');
+let inputCity = document.getElementById('city');
+let inputEmail = document.getElementById('email');
+
+
 function getForm(){
-
-    //getting access to form data in the DOM
-    let form = document.querySelector('.cart__order__form');
-    let inputFirstName = document.getElementById('firstName');
-    let inputLastName = document.getElementById('lastName');
-    let inputAddress = document.getElementById('address');
-    let inputCity = document.getElementById('city');
-    let inputEmail = document.getElementById('email');
-
     // first name change event
     form.firstName.addEventListener('change', function(){
         validFirstName(this);
@@ -266,6 +266,7 @@ function getForm(){
             return true;
         }
     } 
+    syncCart();
 }
 
 // post form
@@ -276,11 +277,11 @@ function postForm(){
 
         // contact object 
         let contact = {
-                firstName: inputFirstName.value,
-                lastName: inputLastName.value,
-                address: inputAddress.value,
-                city: inputCity.value,
-                email: inputEmail.value,
+                firstName: inputFirstName,
+                lastName: inputLastName,
+                address: inputAddress,
+                city: inputCity,
+                email: inputEmail,
         }
 
         // creation of product array
