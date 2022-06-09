@@ -277,18 +277,20 @@ function postForm(){
 
         // contact object 
         let contact = {
-                firstName: inputFirstName,
-                lastName: inputLastName,
-                address: inputAddress,
-                city: inputCity,
-                email: inputEmail,
+                firstName: inputFirstName.value,
+                lastName: inputLastName.value,
+                address: inputAddress.value,
+                city: inputCity.value,
+                email: inputEmail.value,
         }
+        console.log(contact);
 
         // creation of product array
         const products = [];
         for (let i = 0; i < productLocalStorage.length; i++) {
             products.push(productLocalStorage[i]._id);
         }
+        console.log(products);
      
         
     // need to collect form data
