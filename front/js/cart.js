@@ -1,5 +1,29 @@
-
+// this is the cart from local storage - array
 let productLocalStorage = JSON.parse(localStorage.getItem('cart'));
+
+// store product prices on object
+const priceObject = {};
+fetch('http://localhost:3000/api/products/')
+    .then(response => response.json()) // takes json and turns it into a data structure
+    .then(data => initPrices(data))
+    .then(() => {
+        buildPage();
+        getTotals();
+    })
+    .catch(error => console.log(error));
+
+function initPrices(array) {
+    const length = array.length;
+    for (let i=0; i < length; i++) {
+        // id - key - property of an object
+        // price - value - price that corresponds to that id
+        priceObject[array[i]._id] = array[i].price; // array[i] is object
+    }
+
+    console.log(priceObject);
+}
+function buildPage() {
+
 
 // if product is not in local storage
 if (!productLocalStorage) { 
@@ -49,7 +73,9 @@ if (!productLocalStorage) {
         
         // add price
         let productPrice = document.createElement('p');
-        productPrice.innerHTML = ' €' + productLocalStorage[i].price; // puts euro symbol in front of number 
+        let thing = productLocalStorage[i]._id;
+        console.log(priceObject, 'at build');
+        productPrice.innerHTML = ' €' + priceObject[thing]; // puts euro symbol in front of number TODO: need to get price from object
         productItemContentDescription.appendChild(productPrice);
 
         //create cart item content settings div
@@ -77,7 +103,7 @@ if (!productLocalStorage) {
         productQuantity.setAttribute('max', '100');
         productQuantity.setAttribute('name', 'itemQuantity');
         productItemContentQuantity.appendChild(productQuantity);
-        // productQuantity.addEventListener('change', updateQuantity); 
+        productQuantity.addEventListener('change', updateQuantity); 
 
         // create cart delete div 
         let productDeleteItem = document.createElement('div');
@@ -98,6 +124,7 @@ if (!productLocalStorage) {
         //     e.preventDefault();
         // })
     }
+}
 }
 // delete item function
 function deleteItem(event){
@@ -122,24 +149,24 @@ function deleteItem(event){
     syncCart();
 }
 
-// // modify quantity
-// function updateQuantity(e){
-//     console.log(e);
-//     const quantityInput = e.target.value;
-//     const productCard = quantityInput; // traversing the DOM to the article
-//     const productId = productCard.dataset.id; // grab the data-id
-//     const productColor = productCard.dataset.color // grab the data-color
+// modify quantity
+function updateQuantity(e){
+    console.log(e.target);
+    const quantityInput = e.target.value;
+    const productCard = e.target.parentElement.parentElement.parentElement.parentElement; // traversing the DOM to the article
+    console.log(productCard);
+    const productId = productCard.dataset.id; // grab the data-id
+    const productColor = productCard.dataset.color // grab the data-color
 
-//     for (let i=0; i < productLocalStorage.length; i++) {
-//         if (productId === productLocalStorage[i]._id && productColor === productLocalStorage[i].color) {
-//            productLocalStorage[i].push;
-//         }
-//     }
-//     // modify total price and quantity 
-//     updateQuantity();
-//     // update localStorage
-//     syncCart();
-// }
+    for (let i=0; i < productLocalStorage.length; i++) {
+        if (productId === productLocalStorage[i]._id && productColor === productLocalStorage[i].color) {
+           // TODO: change quantity on object in cart
+        }
+    }
+    // update localStorage
+    syncCart();
+    getTotals();
+}
 
 // total quantity and price on page load and when you change the quantity or delete an item
 function getTotals(){
@@ -158,7 +185,7 @@ function getTotals(){
     // total price    
     let totalPrice = 0; 
         for (let i = 0; i < myLength; i++) { 
-            totalPrice += (productQte[i].valueAsNumber * productLocalStorage[i].price);
+            totalPrice += (productQte[i].valueAsNumber * priceObject[productLocalStorage[i]._id]); // TODO: need to get price from object
         } // total price = price times the product quantity
     
     let productTotalPrice = document.getElementById('totalPrice');
@@ -166,7 +193,7 @@ function getTotals(){
     syncCart();
 }
 
-getTotals();
+
 
 
 
@@ -215,13 +242,24 @@ function getForm(){
     // first name validation
     let firstNameErrorMessage = document.getElementById('firstNameErrorMsg');
     function validFirstName(inputFirstName) {
-        if (charAlphaRegExp.test(inputFirstName) == false) {
-            return false;
+        if (charAlphaRegExp.test(inputFirstName.value) == false) {
+            firstNameErrorMessage.innerHTML = "Please enter your name";
         } else {
-            firstNameErrorMsg.innerHTML = null;
             return true;
         }
     };
+
+    // the second way that I tried validation
+    // let firstNameErrorMessage = document.getElementById('firstNameErrorMsg');
+    // function validFirstName(inputFirstName) {
+    //     if (document.form.inputFirstName.value == "" || inputFirstName.value == null || !charAlphaRegExp.test(inputFirstName) == false) {
+    //         firstNameErrorMessage.innerHTML = 'Please provide your first name';
+    //         return false;
+    //     } else {
+    //         firstNameErrorMessage.innerHTML = null;
+    //         return true;
+    //     }
+    // };
 
     // last name validation
     let lastNameErrorMessage = document.getElementById('lastNameErrorMsg');
@@ -229,7 +267,7 @@ function getForm(){
         if (charAlphaRegExp.test(inputLastName) == false) {
             return false;
         } else {
-            lastNameErrorMsg.innerHTML = null;
+            lastNameErrorMessage.innerHTML = null;
             return true;
         }
     }; 
@@ -240,7 +278,7 @@ function getForm(){
         if (addressRegExp.test(inputAddress) == false) {
             return false;
         } else {
-            addressErrorMsg.innerHTML = null;
+            addressErrorMessage.innerHTML = null;
             return true;
         }
     }
@@ -251,7 +289,7 @@ function getForm(){
         if (charRegExp.test(inputCity) == false) {
             return false
         } else {
-            cityErrorMsg.innerHTML = null;
+            cityErrorMessage.innerHTML = null;
             return true;
         }
     } 
@@ -262,7 +300,7 @@ function getForm(){
         if (emailRegExp.test(inputEmail) == false) {
             return false;
         } else {
-            emailErrorMsg.innerHTML = null;
+            emailErrorMessage.innerHTML = null;
             return true;
         }
     } 

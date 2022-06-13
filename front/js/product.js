@@ -97,9 +97,6 @@ function initProdObject(object) {
     prodObject.name = object.name;
     prodObject.imageUrl = object.imageUrl;
     prodObject.altTxt = object.altTxt;
-    prodObject.price = object.price;
-
-
 }
 
 // add to cart event andfunction
