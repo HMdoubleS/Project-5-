@@ -73,9 +73,9 @@ if (!productLocalStorage) {
         
         // add price
         let productPrice = document.createElement('p');
-        let thing = productLocalStorage[i]._id;
+        // let thing = productLocalStorage[i]._id;
         console.log(priceObject, 'at build');
-        productPrice.innerHTML = ' €' + priceObject[thing]; // puts euro symbol in front of number TODO: need to get price from object
+        productPrice.innerHTML = ' €' + priceObject[productLocalStorage[i]._id]; // puts euro symbol in front of number TODO: need to get price from object
         productItemContentDescription.appendChild(productPrice);
 
         //create cart item content settings div
@@ -152,7 +152,7 @@ function deleteItem(event){
 // modify quantity
 function updateQuantity(e){
     console.log(e.target);
-    const quantityInput = e.target.value;
+    let quantityInput = 0;
     const productCard = e.target.parentElement.parentElement.parentElement.parentElement; // traversing the DOM to the article
     console.log(productCard);
     const productId = productCard.dataset.id; // grab the data-id
@@ -160,7 +160,8 @@ function updateQuantity(e){
 
     for (let i=0; i < productLocalStorage.length; i++) {
         if (productId === productLocalStorage[i]._id && productColor === productLocalStorage[i].color) {
-           // TODO: change quantity on object in cart
+           quantityInput += productLocalStorage[i]._id * e.target.value;
+            // TODO: change quantity on object in cart
         }
     }
     // update localStorage
