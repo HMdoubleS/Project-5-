@@ -11,7 +11,7 @@ fetch('http://localhost:3000/api/products/')
     console.log(error);
   }) 
 
-// taking the data returned from the fetch call and dynamically creating product cards for the homepage
+// taking the data array returned from the fetch call and dynamically creating product cards for the homepage
 function makeCards(productsArray) {
   const length = productsArray.length;
   const items = document.getElementById('items');
@@ -28,7 +28,8 @@ function makeCards(productsArray) {
   </a> 
 ` 
     console.log(productsArray[i]);
-    items.insertAdjacentHTML('beforeend',template)
+    items.insertAdjacentHTML('beforeend',template) 
+    // parses the text as html and inserts it at the specified position, beforeend means just inside the element before the last child //
   }
 }
   
