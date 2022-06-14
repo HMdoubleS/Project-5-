@@ -4,8 +4,8 @@ fetch('http://localhost:3000/api/products/')
     return response.json();
   })
   .then((data) => {
-    console.log(data);
-    makeCards(data);
+    console.log(data); // console log to see the data that is returned 
+    makeCards(data); // calling the makeCards function
   })
   .catch(error => {
     console.log(error);
