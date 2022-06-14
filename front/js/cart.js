@@ -160,7 +160,8 @@ function updateQuantity(e){
 
     for (let i=0; i < productLocalStorage.length; i++) {
         if (productId === productLocalStorage[i]._id && productColor === productLocalStorage[i].color) {
-           quantityInput += productLocalStorage[i]._id * e.target.value;
+            const newLocal = productLocalStorage[i]._id;
+           quantityInput += newLocal * e.target.value;
             // TODO: change quantity on object in cart
         }
     }
