@@ -1,4 +1,4 @@
-// this is the cart from local storage - array
+// this is the cart array from local storage
 let productLocalStorage = JSON.parse(localStorage.getItem('cart'));
 
 // store product prices on object
@@ -22,15 +22,16 @@ function initPrices(array) {
 
     console.log(priceObject);
 }
-function buildPage() {
 
+function buildPage() {
 
 // if product is not in local storage
 if (!productLocalStorage) { 
-    
+    cart = [];
 } else {
     // iterate through all items in the cart
     for (let i=0; i < productLocalStorage.length; i++) {
+
         // create article 
         let productArticle = document.createElement('article');
         productArticle.classList.add('cart__item');
@@ -71,11 +72,11 @@ if (!productLocalStorage) {
         productColor.innerHTML = productLocalStorage[i].color;
         productItemContentDescription.appendChild(productColor);
         
-        // add price
+        // add price, getting the price from the object not localStorage
         let productPrice = document.createElement('p');
         // let thing = productLocalStorage[i]._id;
         console.log(priceObject, 'at build');
-        productPrice.innerHTML = ' €' + priceObject[productLocalStorage[i]._id]; // puts euro symbol in front of number TODO: need to get price from object
+        productPrice.innerHTML = ' €' + priceObject[productLocalStorage[i]._id]; // puts euro symbol in front of number 
         productItemContentDescription.appendChild(productPrice);
 
         //create cart item content settings div
@@ -118,11 +119,11 @@ if (!productLocalStorage) {
         // delete button even listener
         productDelete.addEventListener('click', deleteItem);
 
-        // // order button
-        // const orderBtn = document.getElementById('order');
-        // orderBtn.addEventListener('click', (e) => {
-        //     e.preventDefault();
-        // })
+        // order button
+        const orderBtn = document.getElementById('order');
+        orderBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+        })
     }
 }
 }
