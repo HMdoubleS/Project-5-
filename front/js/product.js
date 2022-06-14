@@ -1,4 +1,5 @@
-const _id = new URL(window.location.href).searchParams.get('id'); //returns the url of the current page
+//returns the url of the current page
+const _id = new URL(window.location.href).searchParams.get('id');
 console.log(_id);
 
 
@@ -24,7 +25,7 @@ const prodObject = {
     quantity: 1
 }
 
-//getting the item from the api with the ID of the current product
+// getting the item from the api with the ID of the current product
 fetch('http://localhost:3000/api/products/' + _id) 
     .then(response => response.json())
     .then(data => {
