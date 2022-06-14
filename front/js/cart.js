@@ -127,6 +127,7 @@ if (!productLocalStorage) {
     }
 }
 }
+
 // delete item function
 function deleteItem(event){
     // remove element from the DOM
@@ -161,8 +162,7 @@ function updateQuantity(e){
 
     for (let i=0; i < productLocalStorage.length; i++) {
         if (productId === productLocalStorage[i]._id && productColor === productLocalStorage[i].color) {
-            const newLocal = productLocalStorage[i]._id;
-           quantityInput += newLocal * e.target.value;
+            
             // TODO: change quantity on object in cart
         }
     }
@@ -188,7 +188,7 @@ function getTotals(){
     // total price    
     let totalPrice = 0; 
         for (let i = 0; i < myLength; i++) { 
-            totalPrice += (productQte[i].valueAsNumber * priceObject[productLocalStorage[i]._id]); // TODO: need to get price from object
+            totalPrice += (productQte[i].valueAsNumber * priceObject[productLocalStorage[i]._id]); // get price from object
         } // total price = price times the product quantity
     
     let productTotalPrice = document.getElementById('totalPrice');
