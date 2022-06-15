@@ -74,8 +74,7 @@ if (!productLocalStorage) {
         
         // add price, getting the price from the object not localStorage
         let productPrice = document.createElement('p');
-        // let thing = productLocalStorage[i]._id;
-        console.log(priceObject, 'at build');
+        // console.log(priceObject, 'at build');
         productPrice.innerHTML = ' €' + priceObject[productLocalStorage[i]._id]; // puts euro symbol in front of number 
         productItemContentDescription.appendChild(productPrice);
 
@@ -104,7 +103,7 @@ if (!productLocalStorage) {
         productQuantity.setAttribute('max', '100');
         productQuantity.setAttribute('name', 'itemQuantity');
         productItemContentQuantity.appendChild(productQuantity);
-        productQuantity.addEventListener('change', updateQuantity); 
+        productQuantity.addEventListener('click', updateQuantity); 
 
         // create cart delete div 
         let productDeleteItem = document.createElement('div');
@@ -150,25 +149,28 @@ function deleteItem(event){
     // update localStorage
     syncCart();
 }
-
+// TODO: update quantity on object
 // modify quantity
 function updateQuantity(e){
     console.log(e.target);
-    let quantityInput = 0;
     const productCard = e.target.parentElement.parentElement.parentElement.parentElement; // traversing the DOM to the article
-    console.log(productCard);
+    // console.log(productCard);
+    let quantityInput = 0;
+    let productQuantity = document.createElement('input');
     const productId = productCard.dataset.id; // grab the data-id
     const productColor = productCard.dataset.color // grab the data-color
 
     for (let i=0; i < productLocalStorage.length; i++) {
         if (productId === productLocalStorage[i]._id && productColor === productLocalStorage[i].color) {
-            
-            // TODO: change quantity on object in cart
+        quantityInput += e.target.valueAsNumber + productQuantity.innerHTML;
+        console.log(quantityInput);
         }
     }
+    // change  quantity in DOM to reflect changed cart item
+    getTotals();
     // update localStorage
     syncCart();
-    getTotals();
+    
 }
 
 // total quantity and price on page load and when you change the quantity or delete an item
@@ -217,7 +219,7 @@ let inputEmail = document.getElementById('email');
 
 function getForm(){
     // first name change event
-    form.firstName.addEventListener('change', function(){
+    inputFirstName.addEventListener('change', function(){
         validFirstName(this);
     })
 
@@ -241,7 +243,7 @@ function getForm(){
         validEmail(this);
     })
 
-    //form data validation
+    // form data validation
     // first name validation
     let firstNameErrorMessage = document.getElementById('firstNameErrorMsg');
     function validFirstName(inputFirstName) {
@@ -333,9 +335,14 @@ function postForm(){
         }
         console.log(products);
      
-        
-    // need to collect form data
-    // need to create a POST request
+        // collection of form data
+        const formData = {
+            contact,
+            products,
+        }
+        console.log(formData);
+    
+    // TODO: create a POST request
 
 
     }
