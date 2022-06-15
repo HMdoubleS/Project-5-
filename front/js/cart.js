@@ -118,11 +118,11 @@ if (!productLocalStorage) {
         // delete button even listener
         productDelete.addEventListener('click', deleteItem);
 
-        // order button
-        const orderBtn = document.getElementById('order');
-        orderBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-        })
+        // // order button
+        // const orderBtn = document.getElementById('order');
+        // orderBtn.addEventListener('click', (e) => {
+        //     e.preventDefault();
+        // })
     }
 }
 }
@@ -154,7 +154,7 @@ function deleteItem(event){
 function updateQuantity(e){
     console.log(e.target);
     const productCard = e.target.parentElement.parentElement.parentElement.parentElement; // traversing the DOM to the article
-    // console.log(productCard);
+    console.log(productCard);
     let quantityInput = 0;
     let productQuantity = document.createElement('input');
     const productId = productCard.dataset.id; // grab the data-id
@@ -170,7 +170,6 @@ function updateQuantity(e){
     getTotals();
     // update localStorage
     syncCart();
-    
 }
 
 // total quantity and price on page load and when you change the quantity or delete an item
@@ -219,7 +218,7 @@ let inputEmail = document.getElementById('email');
 
 function getForm(){
     // first name change event
-    inputFirstName.addEventListener('change', function(){
+    form.firstName.addEventListener('change', function(){
         validFirstName(this);
     })
 
