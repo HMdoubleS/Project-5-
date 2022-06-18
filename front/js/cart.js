@@ -1,6 +1,13 @@
 // this is the cart array from local storage
 let productLocalStorage = JSON.parse(localStorage.getItem('cart'));
 
+// updates the cart array
+function syncCart() {
+    let cartString = JSON.stringify(productLocalStorage); // takes data and turns it into a JSON string
+    localStorage.setItem('cart', cartString); // add the data to the cart array localStorage
+    productLocalStorage = JSON.parse(cartString); // productLocalStorage is the parsed version of the cartString
+}
+
 // store product prices on object
 const priceObject = {};
 fetch('http://localhost:3000/api/products/')
@@ -162,11 +169,11 @@ function updateQuantity(e){
 
     for (let i=0; i < productLocalStorage.length; i++) {
         if (productId === productLocalStorage[i]._id && productColor === productLocalStorage[i].color) {
-        quantityInput += e.target.valueAsNumber + productQuantity.innerHTML;
-        console.log(quantityInput);
+            quantityInput += e.target.valueAsNumber;
+            productLocalStorage[i].quantity = quantityInput;
         }
     }
-    // change  quantity in DOM to reflect changed cart item
+    // change quantity in DOM to reflect changed cart item
     getTotals();
     // update localStorage
     syncCart();
@@ -352,10 +359,5 @@ postForm();
 
 
 
-// updates the cart array
-function syncCart() {
-    let cartString = JSON.stringify(productLocalStorage); // takes data and turns it into a JSON string
-    localStorage.setItem('cart', cartString); // add the data to the cart array localStorage
-    productLocalStorage = JSON.parse(cartString); // productLocalStorage is the parsed version of the cartString
-}
+
     
