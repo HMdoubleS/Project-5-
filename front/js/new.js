@@ -24,3 +24,5 @@ let template = `<article class="cart__item" data-id="${productID}" data-color="{
 </div>
 </article>`
 console.log(template);
+
+

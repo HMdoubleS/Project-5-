@@ -126,10 +126,10 @@ if (!productLocalStorage) {
         productDelete.addEventListener('click', deleteItem);
 
         // // order button
-        // const orderBtn = document.getElementById('order');
-        // orderBtn.addEventListener('click', (e) => {
-        //     e.preventDefault();
-        // })
+        const orderBtn = document.getElementById('order');
+        orderBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+        })
     }
 }
 }
@@ -156,7 +156,6 @@ function deleteItem(event){
     // update localStorage
     syncCart();
 }
-// TODO: update quantity on object
 // modify quantity
 function updateQuantity(e){
     console.log(e.target);
@@ -208,11 +207,11 @@ function getTotals(){
 
 
 
-// form data and event listeners for change events
-// regular expressions for validation
-let emailRegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/; //www.regular-expressions.info/email.html
-let charAlphaRegExp = /^[A-Za-z -]{3,32}$/;
-let addressRegExp = /^[A-Za-z0-9 -#./&']{7,32}$/; 
+// // form data and event listeners for change events
+// // regular expressions for validation
+// let emailRegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/; //www.regular-expressions.info/email.html
+// let charAlphaRegExp = /^[A-Za-z -]{3,32}$/;
+// let addressRegExp = /^[A-Za-z0-9 -#./&']{7,32}$/; 
 
 //getting access to form data in the DOM
 let form = document.querySelector('.cart__order__form');
@@ -223,100 +222,100 @@ let inputCity = document.getElementById('city');
 let inputEmail = document.getElementById('email');
 
 
-function getForm(){
-    // first name change event
-    form.firstName.addEventListener('change', function(){
-        validFirstName(this);
-    })
+// function getForm(){
+//     // first name change event
+//     form.firstName.addEventListener('change', function(){
+//         validFirstName(this);
+//     })
 
-    // last name change event
-    form.lastName.addEventListener('change', function(){
-        validLastName(this);
-    })
+//     // last name change event
+//     form.lastName.addEventListener('change', function(){
+//         validLastName(this);
+//     })
 
-    // address change event
-    form.address.addEventListener('change', function(){
-        validAddress(this);
-    })
+//     // address change event
+//     form.address.addEventListener('change', function(){
+//         validAddress(this);
+//     })
 
-    // city change event
-    form.city.addEventListener('change', function(){
-        validCity(this);
-    })
+//     // city change event
+//     form.city.addEventListener('change', function(){
+//         validCity(this);
+//     })
 
-    // email change event
-    form.email.addEventListener('change', function(){
-        validEmail(this);
-    })
+//     // email change event
+//     form.email.addEventListener('change', function(){
+//         validEmail(this);
+//     })
 
-    // form data validation
-    // first name validation
-    let firstNameErrorMessage = document.getElementById('firstNameErrorMsg');
-    function validFirstName(inputFirstName) {
-        if (charAlphaRegExp.test(inputFirstName.value) == false) {
-            firstNameErrorMessage.innerHTML = "Please enter your name";
-        } else {
-            return true;
-        }
-    };
+//     // form data validation
+//     // first name validation
+//     let firstNameErrorMessage = document.getElementById('firstNameErrorMsg');
+//     function validFirstName(inputFirstName) {
+//         if (charAlphaRegExp.test(inputFirstName.value) == false) {
+//             firstNameErrorMessage.innerHTML = "Please enter your name";
+//         } else {
+//             return true;
+//         }
+//     };
 
-    // the second way that I tried validation
-    // let firstNameErrorMessage = document.getElementById('firstNameErrorMsg');
-    // function validFirstName(inputFirstName) {
-    //     if (document.form.inputFirstName.value == "" || inputFirstName.value == null || !charAlphaRegExp.test(inputFirstName) == false) {
-    //         firstNameErrorMessage.innerHTML = 'Please provide your first name';
-    //         return false;
-    //     } else {
-    //         firstNameErrorMessage.innerHTML = null;
-    //         return true;
-    //     }
-    // };
+//     // the second way that I tried validation
+//     // let firstNameErrorMessage = document.getElementById('firstNameErrorMsg');
+//     // function validFirstName(inputFirstName) {
+//     //     if (document.form.inputFirstName.value == "" || inputFirstName.value == null || !charAlphaRegExp.test(inputFirstName) == false) {
+//     //         firstNameErrorMessage.innerHTML = 'Please provide your first name';
+//     //         return false;
+//     //     } else {
+//     //         firstNameErrorMessage.innerHTML = null;
+//     //         return true;
+//     //     }
+//     // };
 
-    // last name validation
-    let lastNameErrorMessage = document.getElementById('lastNameErrorMsg');
-    function validLastName(inputLastName) {
-        if (charAlphaRegExp.test(inputLastName) == false) {
-            return false;
-        } else {
-            lastNameErrorMessage.innerHTML = null;
-            return true;
-        }
-    }; 
+//     // last name validation
+//     let lastNameErrorMessage = document.getElementById('lastNameErrorMsg');
+//     function validLastName(inputLastName) {
+//         if (charAlphaRegExp.test(inputLastName) == false) {
+//             return false;
+//         } else {
+//             lastNameErrorMessage.innerHTML = null;
+//             return true;
+//         }
+//     }; 
 
-    // address validation
-    let addressErrorMessage = document.getElementById('addressErrorMsg');
-    function validAddress(inputAddress) {
-        if (addressRegExp.test(inputAddress) == false) {
-            return false;
-        } else {
-            addressErrorMessage.innerHTML = null;
-            return true;
-        }
-    }
+//     // address validation
+//     let addressErrorMessage = document.getElementById('addressErrorMsg');
+//     function validAddress(inputAddress) {
+//         if (addressRegExp.test(inputAddress) == false) {
+//             return false;
+//         } else {
+//             addressErrorMessage.innerHTML = null;
+//             return true;
+//         }
+//     }
 
-    // city validation
-    let cityErrorMessage = document.getElementById('cityErrorMsg');
-    function validCity(inputCity) {
-        if (charRegExp.test(inputCity) == false) {
-            return false
-        } else {
-            cityErrorMessage.innerHTML = null;
-            return true;
-        }
-    } 
+//     // city validation
+//     let cityErrorMessage = document.getElementById('cityErrorMsg');
+//     function validCity(inputCity) {
+//         if (charRegExp.test(inputCity) == false) {
+//             return false
+//         } else {
+//             cityErrorMessage.innerHTML = null;
+//             return true;
+//         }
+//     } 
 
-    //email validation
-    let emailErrorMessage = document.getElementById('emailErrorMsg');
-    function validEmail(inputEmail) {
-        if (emailRegExp.test(inputEmail) == false) {
-            return false;
-        } else {
-            emailErrorMessage.innerHTML = null;
-            return true;
-        }
-    } 
-    syncCart();
-}
+//     //email validation
+//     let emailErrorMessage = document.getElementById('emailErrorMsg');
+//     function validEmail(inputEmail) {
+//         if (emailRegExp.test(inputEmail) == false) {
+//             return false;
+//         } else {
+//             emailErrorMessage.innerHTML = null;
+//             return true;
+//         }
+//     } 
+//     syncCart();
+// }
 
 // post form
 function postForm(){
@@ -347,10 +346,13 @@ function postForm(){
             products,
         }
         console.log(formData);
-    
-    // TODO: create a POST request
 
+        const orderData = JSON.stringify(formData);
 
+    // POST request
+    fetch('http://localhost:3000/api/products/order', orderData)
+        .then(response => response.json())
+        .then(data => console.log(data));
     }
 
 )}

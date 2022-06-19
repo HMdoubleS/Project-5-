@@ -105,6 +105,7 @@ function addToCart(event) {
     let pushToCart = true; // indicates whether to put the item in the cart
     
     // is it empty? 
+    console.log(cartArray);
     if (cartArray.length > 0) { 
         // iterates through each item in the cartArray to see if name and options matches current cart items
         for (let i = 0; i < cartArray.length; i++) { 
