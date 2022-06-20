@@ -347,14 +347,23 @@ function postForm(){
         }
         console.log(formData);
 
-        const orderData = JSON.stringify(formData);
+        const orderData = {
+            method: 'POST',
+            body: JSON.stringify(formData),
+            headers: {
+                'Content-type': 'application/json',
+            }
+        };    
 
     // POST request
     fetch('http://localhost:3000/api/products/order', orderData)
         .then(response => response.json())
-        .then(data => console.log(data));
+        .then((data) => {
+            let confirmationUrl = './confirmation.html?id=' + data.orderId;
+            window.location.href = confirmationUrl;
+            localStorage.clear();
+        })
     }
-
 )}
 postForm();
 
