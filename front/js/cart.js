@@ -317,7 +317,7 @@ let inputEmail = document.getElementById('email');
 //     syncCart();
 // }
 
-// post form
+// post form and gathering order data
 function postForm(){
     let order = document.getElementById('order');
     order.addEventListener('click', (event) => {
@@ -360,11 +360,12 @@ function postForm(){
         .then(response => response.json())
         .then((data) => {
             let confirmationUrl = './confirmation.html?id=' + data.orderId;
-            window.location.href = confirmationUrl;
             localStorage.clear();
+            window.location.href = confirmationUrl;
         })
+        .catch(error => console.log(error));
     }
-)}
+)};
 postForm();
 
 
