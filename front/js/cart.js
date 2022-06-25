@@ -207,11 +207,11 @@ function getTotals(){
 
 
 
-// // form data and event listeners for change events
-// // regular expressions for validation
-// let emailRegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/; //www.regular-expressions.info/email.html
-// let charAlphaRegExp = /^[A-Za-z -]{3,32}$/;
-// let addressRegExp = /^[A-Za-z0-9 -#./&']{7,32}$/; 
+// form data and event listeners for change events
+// regular expressions for validation
+let emailRegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/; //www.regular-expressions.info/email.html
+let charAlphaRegExp = /^[A-Za-z -]{3,32}$/;
+let addressRegExp = /^[A-Za-z0-9 -#./&']{7,32}$/; 
 
 //getting access to form data in the DOM
 let form = document.querySelector('.cart__order__form');
@@ -221,101 +221,93 @@ let inputAddress = document.getElementById('address');
 let inputCity = document.getElementById('city');
 let inputEmail = document.getElementById('email');
 
+function getForm(){
+    // first name change event
+    form.inputFirstName.addEventListener('change', validFirstName);
 
-// function getForm(){
-//     // first name change event
-//     form.firstName.addEventListener('change', function(){
-//         validFirstName(this);
-//     })
+    // last name change event
+    form.inputLastName.addEventListener('change', validLastName);
 
-//     // last name change event
-//     form.lastName.addEventListener('change', function(){
-//         validLastName(this);
-//     })
+    // address change event
+    form.inputAddress.addEventListener('change', validAddress);
 
-//     // address change event
-//     form.address.addEventListener('change', function(){
-//         validAddress(this);
-//     })
+    // city change event
+    form.inputCity.addEventListener('change', validCity);
 
-//     // city change event
-//     form.city.addEventListener('change', function(){
-//         validCity(this);
-//     })
+    // email change event
+    form.inputEmail.addEventListener('change', validEmail);
 
-//     // email change event
-//     form.email.addEventListener('change', function(){
-//         validEmail(this);
-//     })
+    // form data validation
+    // first name validation
+    let firstNameErrorMessage = document.getElementById('firstNameErrorMsg');
+    function validFirstName(inputFirstName) {
+        if (charAlphaRegExp.test(inputFirstName.value)) {
+            firstNameErrorMessage.classList.add('d-none');
+            inputFirstName.style.border = 'thin solid green';
+            return true;
+        } else {
+            firstNameErrorMessage.classList.remove('d-none');
+            inputFirstName.style.border = 'thin solid red';
+            return false;
+        }
+    };
 
-//     // form data validation
-//     // first name validation
-//     let firstNameErrorMessage = document.getElementById('firstNameErrorMsg');
-//     function validFirstName(inputFirstName) {
-//         if (charAlphaRegExp.test(inputFirstName.value) == false) {
-//             firstNameErrorMessage.innerHTML = "Please enter your name";
-//         } else {
-//             return true;
-//         }
-//     };
+    // last name validation
+    let lastNameErrorMessage = document.getElementById('lastNameErrorMsg');
+    function validLastName(inputLastName) {
+        if (charAlphaRegExp.test(inputLastName.value)) {
+            lastNameErrorMessage.classList.add('d-none');
+            inputLastName.style.border = 'thin solid green';
+            return true;
+        } else {
+            lastNameErrorMessage.classList.remove('d-none');
+            inputLastName.style.border = 'thin solid red';
+            return false;
+        }
+    };
 
-//     // the second way that I tried validation
-//     // let firstNameErrorMessage = document.getElementById('firstNameErrorMsg');
-//     // function validFirstName(inputFirstName) {
-//     //     if (document.form.inputFirstName.value == "" || inputFirstName.value == null || !charAlphaRegExp.test(inputFirstName) == false) {
-//     //         firstNameErrorMessage.innerHTML = 'Please provide your first name';
-//     //         return false;
-//     //     } else {
-//     //         firstNameErrorMessage.innerHTML = null;
-//     //         return true;
-//     //     }
-//     // };
+    // address validation
+    let addressErrorMessage = document.getElementById('addressErrorMsg');
+    function validAddress(inputAddress) {
+        if (addressRegExp.test(inputAddress.value)) {
+            addressErrorMessage.classList.add('d-none');
+            inputAddress.style.border = 'thin solid green';
+            return true;
+        } else {
+            addressErrorMessage.classList.remove('d-none');
+            inputAddress.style.border = 'thin solid red';
+            return false;
+        }
+    };
 
-//     // last name validation
-//     let lastNameErrorMessage = document.getElementById('lastNameErrorMsg');
-//     function validLastName(inputLastName) {
-//         if (charAlphaRegExp.test(inputLastName) == false) {
-//             return false;
-//         } else {
-//             lastNameErrorMessage.innerHTML = null;
-//             return true;
-//         }
-//     }; 
+    // city validation
+    let cityErrorMessage = document.getElementById('cityErrorMsg');
+    function validCity(inputCity) {
+        if (charAlphaRegExp.test(inputCity.value)) {
+            cityErrorMessage.classList.add('d-none');
+            inputCity.style.border = 'thin solid green';
+            return true;
+        } else {
+            cityErrorMessage.classList.remove('d-none');
+            inputCity.style.border = 'thin solid red';
+            return false;
+        }
+    }; 
 
-//     // address validation
-//     let addressErrorMessage = document.getElementById('addressErrorMsg');
-//     function validAddress(inputAddress) {
-//         if (addressRegExp.test(inputAddress) == false) {
-//             return false;
-//         } else {
-//             addressErrorMessage.innerHTML = null;
-//             return true;
-//         }
-//     }
-
-//     // city validation
-//     let cityErrorMessage = document.getElementById('cityErrorMsg');
-//     function validCity(inputCity) {
-//         if (charRegExp.test(inputCity) == false) {
-//             return false
-//         } else {
-//             cityErrorMessage.innerHTML = null;
-//             return true;
-//         }
-//     } 
-
-//     //email validation
-//     let emailErrorMessage = document.getElementById('emailErrorMsg');
-//     function validEmail(inputEmail) {
-//         if (emailRegExp.test(inputEmail) == false) {
-//             return false;
-//         } else {
-//             emailErrorMessage.innerHTML = null;
-//             return true;
-//         }
-//     } 
-//     syncCart();
-// }
+    //email validation
+    let emailErrorMessage = document.getElementById('emailErrorMsg');
+    function validEmail(inputEmail) {
+        if (emailRegExp.test(inputEmail.value)) {
+            emailErrorMessage.classList.add('d-none');
+            inputEmail.style.border = 'thin solid green';
+           return true;
+        } else {
+            emailErrorMessage.classList.remove('d-none');
+            inputEmail.style.border = 'thin solid red';
+            return false;
+        }
+    }; 
+}
 
 // post form and gathering order data
 function postForm(){
