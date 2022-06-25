@@ -221,7 +221,7 @@ let inputAddress = document.getElementById('address');
 let inputCity = document.getElementById('city');
 let inputEmail = document.getElementById('email');
 
-function getForm(){
+function formValidation(){
     // first name change event
     form.inputFirstName.addEventListener('change', validFirstName);
 
@@ -237,76 +237,76 @@ function getForm(){
     // email change event
     form.inputEmail.addEventListener('change', validEmail);
 
-    // // form data validation
-    // // first name validation
-    // let firstNameErrorMessage = document.getElementById('firstNameErrorMsg');
-    // function validFirstName(inputFirstName) {
-    //     if (charAlphaRegExp.test(inputFirstName.value)) {
-    //         firstNameErrorMessage.classList.add('d-none');
-    //         inputFirstName.style.border = 'thin solid green';
-    //         return true;
-    //     } else {
-    //         firstNameErrorMessage.classList.remove('d-none');
-    //         inputFirstName.style.border = 'thin solid red';
-    //         return false;
-    //     }
-    // };
+    // form data validation
+    // first name validation
+    let firstNameErrorMessage = document.getElementById('firstNameErrorMsg');
+    function validFirstName(inputFirstName) {
+        if (charAlphaRegExp.test(inputFirstName.value)) {
+            firstNameErrorMessage.classList.add('d-none');
+            inputFirstName.style.border = 'thin solid green';
+            return true;
+        } else {
+            firstNameErrorMessage.classList.remove('d-none');
+            inputFirstName.style.border = 'thin solid red';
+            return false;
+        }
+    };
 
-    // // last name validation
-    // let lastNameErrorMessage = document.getElementById('lastNameErrorMsg');
-    // function validLastName(inputLastName) {
-    //     if (charAlphaRegExp.test(inputLastName.value)) {
-    //         lastNameErrorMessage.classList.add('d-none');
-    //         inputLastName.style.border = 'thin solid green';
-    //         return true;
-    //     } else {
-    //         lastNameErrorMessage.classList.remove('d-none');
-    //         inputLastName.style.border = 'thin solid red';
-    //         return false;
-    //     }
-    // };
+    // last name validation
+    let lastNameErrorMessage = document.getElementById('lastNameErrorMsg');
+    function validLastName(inputLastName) {
+        if (charAlphaRegExp.test(inputLastName.value)) {
+            lastNameErrorMessage.classList.add('d-none');
+            inputLastName.style.border = 'thin solid green';
+            return true;
+        } else {
+            lastNameErrorMessage.classList.remove('d-none');
+            inputLastName.style.border = 'thin solid red';
+            return false;
+        }
+    };
 
-    // // address validation
-    // let addressErrorMessage = document.getElementById('addressErrorMsg');
-    // function validAddress(inputAddress) {
-    //     if (addressRegExp.test(inputAddress.value)) {
-    //         addressErrorMessage.classList.add('d-none');
-    //         inputAddress.style.border = 'thin solid green';
-    //         return true;
-    //     } else {
-    //         addressErrorMessage.classList.remove('d-none');
-    //         inputAddress.style.border = 'thin solid red';
-    //         return false;
-    //     }
-    // };
+    // address validation
+    let addressErrorMessage = document.getElementById('addressErrorMsg');
+    function validAddress(inputAddress) {
+        if (addressRegExp.test(inputAddress.value)) {
+            addressErrorMessage.classList.add('d-none');
+            inputAddress.style.border = 'thin solid green';
+            return true;
+        } else {
+            addressErrorMessage.classList.remove('d-none');
+            inputAddress.style.border = 'thin solid red';
+            return false;
+        }
+    };
 
-    // // city validation
-    // let cityErrorMessage = document.getElementById('cityErrorMsg');
-    // function validCity(inputCity) {
-    //     if (charAlphaRegExp.test(inputCity.value)) {
-    //         cityErrorMessage.classList.add('d-none');
-    //         inputCity.style.border = 'thin solid green';
-    //         return true;
-    //     } else {
-    //         cityErrorMessage.classList.remove('d-none');
-    //         inputCity.style.border = 'thin solid red';
-    //         return false;
-    //     }
-    // }; 
+    // city validation
+    let cityErrorMessage = document.getElementById('cityErrorMsg');
+    function validCity(inputCity) {
+        if (charAlphaRegExp.test(inputCity.value)) {
+            cityErrorMessage.classList.add('d-none');
+            inputCity.style.border = 'thin solid green';
+            return true;
+        } else {
+            cityErrorMessage.classList.remove('d-none');
+            inputCity.style.border = 'thin solid red';
+            return false;
+        }
+    }; 
 
-    // //email validation
-    // let emailErrorMessage = document.getElementById('emailErrorMsg');
-    // function validEmail(inputEmail) {
-    //     if (emailRegExp.test(inputEmail.value)) {
-    //         emailErrorMessage.classList.add('d-none');
-    //         inputEmail.style.border = 'thin solid green';
-    //        return true;
-    //     } else {
-    //         emailErrorMessage.classList.remove('d-none');
-    //         inputEmail.style.border = 'thin solid red';
-    //         return false;
-    //     }
-    // }; 
+    //email validation
+    let emailErrorMessage = document.getElementById('emailErrorMsg');
+    function validEmail(inputEmail) {
+        if (emailRegExp.test(inputEmail.value)) {
+            emailErrorMessage.classList.add('d-none');
+            inputEmail.style.border = 'thin solid green';
+           return true;
+        } else {
+            emailErrorMessage.classList.remove('d-none');
+            inputEmail.style.border = 'thin solid red';
+            return false;
+        }
+    }; 
 }
 
 // post form and gathering order data
