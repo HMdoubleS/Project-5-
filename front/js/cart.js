@@ -221,24 +221,10 @@ let address = document.getElementById('address');
 let city = document.getElementById('city');
 let email = document.getElementById('email');
 
+// form input event listeners and form data validation
 function formValidation(){
-    // first name change event
+    // first name change event and validation
     firstName.addEventListener('change', validFirstName);
-
-    // last name change event
-    lastName.addEventListener('change', validLastName);
-
-    // address change event
-    address.addEventListener('change', validAddress);
-
-    // city change event
-    city.addEventListener('change', validCity);
-
-    // email change event
-    email.addEventListener('change', validEmail);
-
-    // form data validation
-    // first name validation
     let firstNameErrorMsg = document.getElementById('firstNameErrorMsg');
     function validFirstName() {
         if (charAlphaRegExp.test(firstName.value)) {
@@ -252,7 +238,8 @@ function formValidation(){
         }
     };
 
-    // last name validation
+    // last name change event and validation
+    lastName.addEventListener('change', validLastName);
     let lastNameErrorMsg = document.getElementById('lastNameErrorMsg');
     function validLastName() {
         if (charAlphaRegExp.test(lastName.value)) {
@@ -266,7 +253,8 @@ function formValidation(){
         }
     };
 
-    // address validation
+    // address change event and validation
+    address.addEventListener('change', validAddress);
     let addressErrorMsg = document.getElementById('addressErrorMsg');
     function validAddress() {
         if (addressRegExp.test(address.value)) {
@@ -280,7 +268,8 @@ function formValidation(){
         }
     };
 
-    // city validation
+    // city change event and validation
+    city.addEventListener('change', validCity);
     let cityErrorMsg = document.getElementById('cityErrorMsg');
     function validCity() {
         if (charAlphaRegExp.test(city.value)) {
@@ -294,7 +283,8 @@ function formValidation(){
         }
     }; 
 
-    //email validation
+    //email change event and validation
+    email.addEventListener('change', validEmail);
     let emailErrorMsg = document.getElementById('emailErrorMsg');
     function validEmail() {
         if (emailRegExp.test(email.value)) {
@@ -308,7 +298,7 @@ function formValidation(){
         }
     }; 
 }
-// formValidation();
+formValidation();
 
 // post form and gathering order data
 function postForm(){
