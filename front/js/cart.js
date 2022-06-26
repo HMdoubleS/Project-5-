@@ -19,6 +19,7 @@ fetch('http://localhost:3000/api/products/')
     })
     .catch(error => console.log(error));
 
+// initializes price object
 function initPrices(array) {
     const length = array.length;
     for (let i=0; i < length; i++) {
@@ -31,107 +32,107 @@ function initPrices(array) {
 }
 
 function buildPage() {
+    // if product is not in local storage
+    if (!productLocalStorage) { 
+        cart = [];
+    } else {
+        // iterate through all items in the cart
+        for (let i=0; i < productLocalStorage.length; i++) {
 
-// if product is not in local storage
-if (!productLocalStorage) { 
-    cart = [];
-} else {
-    // iterate through all items in the cart
-    for (let i=0; i < productLocalStorage.length; i++) {
+            // create article 
+            let productArticle = document.createElement('article');
+            productArticle.classList.add('cart__item');
+            productArticle.setAttribute('data-id', productLocalStorage[i]._id);
+            productArticle.setAttribute('data-color', productLocalStorage[i].color);
+            document.querySelector('#cart__items').appendChild(productArticle);
 
-        // create article 
-        let productArticle = document.createElement('article');
-        productArticle.classList.add('cart__item');
-        productArticle.setAttribute('data-id', productLocalStorage[i]._id);
-        productArticle.setAttribute('data-color', productLocalStorage[i].color);
-        document.querySelector('#cart__items').appendChild(productArticle);
+            // create image div
+            let productDivImage = document.createElement('div');
+            productDivImage.classList.add('cart__item__img');
+            productArticle.appendChild(productDivImage);
+            
 
-        // create image div
-        let productDivImage = document.createElement('div');
-        productDivImage.classList.add('cart__item__img');
-        productArticle.appendChild(productDivImage);
+            // create image
+            let productImage = document.createElement('img');
+            productImage.src = productLocalStorage[i].imageUrl;
+            productImage.alt = productLocalStorage[i].altTxt;
+            productDivImage.appendChild(productImage);
+            
+            //create cart item content div
+            let productItemContent = document.createElement('div');
+            productItemContent.classList.add('cart__item__content');
+            productArticle.appendChild(productItemContent);
         
 
-        // create image
-        let productImage = document.createElement('img');
-        productImage.src = productLocalStorage[i].imageUrl;
-        productImage.alt = productLocalStorage[i].altTxt;
-        productDivImage.appendChild(productImage);
-        
-        //create cart item content div
-        let productItemContent = document.createElement('div');
-        productItemContent.classList.add('cart__item__content');
-        productArticle.appendChild(productItemContent);
-       
+            //create cart item content description div
+            let productItemContentDescription = document.createElement('div');
+            productItemContentDescription.classList.add('cart__item__content__description');
+            productItemContent.appendChild(productItemContentDescription);
+            
+            // add title
+            let productName = document.createElement('h2');
+            productName.innerHTML = productLocalStorage[i].name;
+            productItemContentDescription.appendChild(productName);
 
-        //create cart item content description div
-        let productItemContentDescription = document.createElement('div');
-        productItemContentDescription.classList.add('cart__item__content__description');
-        productItemContent.appendChild(productItemContentDescription);
-        
-        // add title
-        let productName = document.createElement('h2');
-        productName.innerHTML = productLocalStorage[i].name;
-        productItemContentDescription.appendChild(productName);
+            // add color
+            let productColor = document.createElement('p');
+            productColor.innerHTML = productLocalStorage[i].color;
+            productItemContentDescription.appendChild(productColor);
+            
+            // add price, getting the price from the object not localStorage
+            let productPrice = document.createElement('p');
+            // console.log(priceObject, 'at build');
+            productPrice.innerHTML = ' €' + priceObject[productLocalStorage[i]._id]; // puts euro symbol in front of number 
+            productItemContentDescription.appendChild(productPrice);
 
-        // add color
-        let productColor = document.createElement('p');
-        productColor.innerHTML = productLocalStorage[i].color;
-        productItemContentDescription.appendChild(productColor);
-        
-        // add price, getting the price from the object not localStorage
-        let productPrice = document.createElement('p');
-        // console.log(priceObject, 'at build');
-        productPrice.innerHTML = ' €' + priceObject[productLocalStorage[i]._id]; // puts euro symbol in front of number 
-        productItemContentDescription.appendChild(productPrice);
+            //create cart item content settings div
+            let productItemContentSettings = document.createElement('div');
+            productItemContentSettings.classList.add('cart__item__content__settings');
+            productItemContent.appendChild(productItemContentSettings);
+            
 
-        //create cart item content settings div
-        let productItemContentSettings = document.createElement('div');
-        productItemContentSettings.classList.add('cart__item__content__settings');
-        productItemContent.appendChild(productItemContentSettings);
-        
+            //create cart item content settings quantity div
+            let productItemContentQuantity = document.createElement('div');
+            productItemContentQuantity.classList.add('cart__item__content__settings__quantity');
+            productItemContentSettings.appendChild(productItemContentQuantity);
+            
+            // add quantity text
+            let productQuantityText = document.createElement('p');
+            productQuantityText.innerHTML = 'Qté : ';
+            productItemContentQuantity.appendChild(productQuantityText);
 
-        //create cart item content settings quantity div
-        let productItemContentQuantity = document.createElement('div');
-        productItemContentQuantity.classList.add('cart__item__content__settings__quantity');
-        productItemContentSettings.appendChild(productItemContentQuantity);
-        
-        // add quantity text
-        let productQuantityText = document.createElement('p');
-        productQuantityText.innerHTML = 'Qté : ';
-        productItemContentQuantity.appendChild(productQuantityText);
+            // add quantity
+            let productQuantity = document.createElement('input');
+            productQuantity.value = productLocalStorage[i].quantity;
+            productQuantity.className = 'itemQuantity';
+            productQuantity.setAttribute('type', 'number');
+            productQuantity.setAttribute('min', '1');
+            productQuantity.setAttribute('max', '100');
+            productQuantity.setAttribute('name', 'itemQuantity');
+            productItemContentQuantity.appendChild(productQuantity);
+            productQuantity.addEventListener('click', updateQuantity); 
 
-        // add quantity
-        let productQuantity = document.createElement('input');
-        productQuantity.value = productLocalStorage[i].quantity;
-        productQuantity.className = 'itemQuantity';
-        productQuantity.setAttribute('type', 'number');
-        productQuantity.setAttribute('min', '1');
-        productQuantity.setAttribute('max', '100');
-        productQuantity.setAttribute('name', 'itemQuantity');
-        productItemContentQuantity.appendChild(productQuantity);
-        productQuantity.addEventListener('click', updateQuantity); 
+            // create cart delete div 
+            let productDeleteItem = document.createElement('div');
+            productDeleteItem.classList.add('cart__item__content__settings__delete');
+            productItemContentSettings.appendChild(productDeleteItem);
 
-        // create cart delete div 
-        let productDeleteItem = document.createElement('div');
-        productDeleteItem.classList.add('cart__item__content__settings__delete');
-        productItemContentSettings.appendChild(productDeleteItem);
-
-        // delete button text
-        let productDelete = document.createElement('p');
-        productDelete.className = 'deleteItem';
-        productDelete.innerHTML = 'Delete';
-        productDeleteItem.appendChild(productDelete);
-        // delete button even listener
-        productDelete.addEventListener('click', deleteItem);
-
-        // // order button
+            // delete button text
+            let productDelete = document.createElement('p');
+            productDelete.className = 'deleteItem';
+            productDelete.innerHTML = 'Delete';
+            productDeleteItem.appendChild(productDelete);
+            // delete button even listener
+            productDelete.addEventListener('click', deleteItem);
+        }
+        //end of for loop
+        // order button
         const orderBtn = document.getElementById('order');
-        orderBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-        })
+        // orderBtn.addEventListener('click', (e) => {
+        //     e.preventDefault();
+        // })
+        orderBtn.addEventListener('click', orderItem);
     }
-}
 }
 
 // delete item function
@@ -218,7 +219,6 @@ let city = document.getElementById('city');
 let email = document.getElementById('email');
 
 // form input event listeners and form data validation
-function formValidation(){
     // first name change event and validation
     firstName.addEventListener('change', validFirstName);
     let firstNameErrorMsg = document.getElementById('firstNameErrorMsg');
@@ -293,46 +293,44 @@ function formValidation(){
             return false;
         }
     }; 
-}
-formValidation();
+
 
 // post form and gathering order data
-function postForm(){
-    let order = document.getElementById('order');
-    order.addEventListener('click', (event) => {
-        event.preventDefault();
+function orderItem(event){
+    event.preventDefault();
 
-        // contact object 
-        let contact = {
-                firstName: firstName.value,
-                lastName: lastName.value,
-                address: address.value,
-                city: city.value,
-                email: email.value,
-        }
+    // contact object 
+    let contact = {
+            firstName: firstName.value,
+            lastName: lastName.value,
+            address: address.value,
+            city: city.value,
+            email: email.value,
+    }
 
-        // creation of product array
-        const products = [];
-        for (let i = 0; i < productLocalStorage.length; i++) {
-            products.push(productLocalStorage[i]._id);
-        }
-     
-        // collection of form data
-        const formData = {
-            contact,
-            products,
-        }
+    // creation of product array
+    const products = [];
+    for (let i = 0; i < productLocalStorage.length; i++) {
+        products.push(productLocalStorage[i]._id);
+    }
+    
+    // collection of form data
+    const formData = {
+        contact,
+        products,
+    }
 
-        const orderData = {
-            method: 'POST',
-            body: JSON.stringify(formData),
-            headers: {
-                'Content-type': 'application/json',
-            }
-        };    
+    const orderData = {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: {
+            'Content-type': 'application/json',
+        }
+    };    
 
     // POST request
-    fetch('http://localhost:3000/api/products/order', orderData)
+    if (validFirstName === true && validLastName === true && validAddress === true && validCity === true && validEmail === true ){
+        fetch('http://localhost:3000/api/products/order', orderData)
         .then(response => response.json())
         .then((data) => {
             let confirmationUrl = './confirmation.html?id=' + data.orderId;
@@ -340,9 +338,18 @@ function postForm(){
             window.location.href = confirmationUrl;
         })
         .catch(error => console.log(error));
+    } else if (checkbox.checked === false) {
+        invalidInputAlert.classList.remove('d-none');
+        missingInputError.classList.remove('d-none');
+    } else {
+        invalidInputAlert.classList.remove('d-none');
+        invalidInputAlert.classList.add('d-inline');
     }
-)};
-postForm();
+}
+
+
+    
+
 
 
 
