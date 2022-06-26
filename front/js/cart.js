@@ -229,7 +229,7 @@ function formValidation(){
             return true;
         } else if (charAlphaRegExp.test(firstName.value) === false||firstName.value === '') {
             firstNameErrorMsg.innerHTML = 'Please enter a valid first name';
-            inputFirstName.style.border = '2px solid red';
+            firstName.style.border = '2px solid red';
             return false;
         }
     };
