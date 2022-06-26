@@ -16,7 +16,7 @@ function makeCards(productsArray) {
   const length = productsArray.length;
   const items = document.getElementById('items');
 
-  // iterating through the array of data from the api and using a template literal to create/add the information 
+  // iterating through each item in the array of data from the api and using a template literal to create/add the information 
   for (let i=0; i<length; i++) {
     let template = `
     <a href="./product.html?id=${productsArray[i]._id}">
@@ -29,7 +29,7 @@ function makeCards(productsArray) {
 ` 
     console.log(productsArray[i]);
     items.insertAdjacentHTML('beforeend',template) 
-    // parses the text as html and inserts it at the specified position, beforeend means just inside the element before the last child //
+    // parses the text as html and inserts it at the specified position, beforeend means just inside the element before the last child 
   }
 }
   
