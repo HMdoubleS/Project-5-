@@ -203,13 +203,9 @@ function getTotals(){
     syncCart();
 }
 
-
-
-
-
-// form data and event listeners for change events
+// form data 
 // regular expressions for validation
-let emailRegExp = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i; //www.regular-expressions.info/email.html
+let emailRegExp = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i; 
 let charAlphaRegExp = /^[A-Za-z -]{3,32}$/;
 let addressRegExp = /^[A-Za-z0-9 ]{7,32}$/; 
 
@@ -314,21 +310,18 @@ function postForm(){
                 city: city.value,
                 email: email.value,
         }
-        console.log(contact);
 
         // creation of product array
         const products = [];
         for (let i = 0; i < productLocalStorage.length; i++) {
             products.push(productLocalStorage[i]._id);
         }
-        console.log(products);
      
         // collection of form data
         const formData = {
             contact,
             products,
         }
-        console.log(formData);
 
         const orderData = {
             method: 'POST',
