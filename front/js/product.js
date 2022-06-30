@@ -35,7 +35,6 @@ fetch('http://localhost:3000/api/products/' + _id)
     })
     .catch(error => console.log(error));
   
-
 function makeProductCard(obj) {
     // getting access to variables for DOM elements
     const prodImg = document.querySelector('.item__img');

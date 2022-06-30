@@ -27,7 +27,6 @@ function initPrices(array) {
         // price - value - price that corresponds to that id
         priceObject[array[i]._id] = array[i].price; // array[i] is object
     }
-
     console.log(priceObject);
 }
 
@@ -51,7 +50,6 @@ function buildPage() {
             productDivImage.classList.add('cart__item__img');
             productArticle.appendChild(productDivImage);
             
-
             // create image
             let productImage = document.createElement('img');
             productImage.src = productLocalStorage[i].imageUrl;
@@ -63,7 +61,6 @@ function buildPage() {
             productItemContent.classList.add('cart__item__content');
             productArticle.appendChild(productItemContent);
         
-
             //create cart item content description div
             let productItemContentDescription = document.createElement('div');
             productItemContentDescription.classList.add('cart__item__content__description');
@@ -90,7 +87,6 @@ function buildPage() {
             productItemContentSettings.classList.add('cart__item__content__settings');
             productItemContent.appendChild(productItemContentSettings);
             
-
             //create cart item content settings quantity div
             let productItemContentQuantity = document.createElement('div');
             productItemContentQuantity.classList.add('cart__item__content__settings__quantity');
@@ -128,9 +124,6 @@ function buildPage() {
         //end of for loop
         // order button
         const orderBtn = document.getElementById('order');
-        // orderBtn.addEventListener('click', (e) => {
-        //     e.preventDefault();
-        // })
         orderBtn.addEventListener('click', orderItem);
     }
 }
@@ -299,7 +292,6 @@ let validEmail = false;
             validEmail = false;
         }
     }; 
-
 
 // post form and gathering order data
 function orderItem(event){
